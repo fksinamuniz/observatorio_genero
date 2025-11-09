@@ -64,6 +64,11 @@
     .view-section:target ~ #painel {
       display: none;
     }
+
+    /* Estilo para deixar o texto da sidebar mais vívido */
+    #sidebar h2, #sidebar nav span {
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
   </style>
 </head>
 
@@ -71,18 +76,18 @@
   <div id="root">
     <div class="flex h-screen bg-[#f0f5ff]">
       <!-- Sidebar Estático -->
-      <div
+      <div id="sidebar"
         class="w-64 h-screen bg-gradient-to-b from-violet-300 to-purple-400 text-white fixed left-0 top-0 z-20 flex flex-col shadow-2xl">
         <div class="p-5 flex items-center gap-4">
           <div
             class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-violet-600 text-2xl shadow-lg">
             <i class="fas fa-scale-balanced"></i>
           </div>
-          <h2 class="font-semibold text-md whitespace-nowrap">Observatório de Gênero</h2>
+          <h2 class="font-bold text-lg whitespace-nowrap">Observatório de Gênero</h2>
         </div>
         <nav class="flex-1 px-3 py-2 space-y-1 overflow-y-auto">
           <a href="#painel"
-            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 bg-white/20 text-white font-semibold">
+            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 bg-white/20 text-white font-bold">
             <div class="flex items-center gap-3">
               <i class="fas fa-chart-pie w-5 text-center text-lg"></i>
               <span>Painel</span>
@@ -90,7 +95,7 @@
           </a>
           <div>
             <a href="#violencia"
-              class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-white/80 hover:bg-white/10 hover:text-white">
+              class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-white/90 hover:bg-white/15 hover:text-white font-medium">
               <div class="flex items-center gap-3">
                 <i class="fas fa-house-chimney-crack w-5 text-center text-lg"></i>
                 <span>Violência</span>
@@ -99,45 +104,45 @@
             </a>
             <div class="pl-7 pt-1 pb-2 space-y-1 animate-fade-in">
               <a href="#denuncias"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-200 text-white/70 hover:bg-white/5 hover:text-white">
+                class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-200 text-white/80 hover:bg-white/10 hover:text-white">
                 <i class="fas fa-circle fa-xs w-5 text-center"></i>
                 <span>Denúncias</span>
               </a>
               <a href="#medidas-de-protecao"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-200 text-white/70 hover:bg-white/5 hover:text-white">
+                class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-200 text-white/80 hover:bg-white/10 hover:text-white">
                 <i class="fas fa-circle fa-xs w-5 text-center"></i>
                 <span>Medidas de Proteção</span>
               </a>
               <a href="#estatisticas"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-200 text-white/70 hover:bg-white/5 hover:text-white">
+                class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-200 text-white/80 hover:bg-white/10 hover:text-white">
                 <i class="fas fa-circle fa-xs w-5 text-center"></i>
                 <span>Estatísticas</span>
               </a>
             </div>
           </div>
           <a href="#trabalho-e-renda"
-            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-white/80 hover:bg-white/10 hover:text-white">
+            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-white/90 hover:bg-white/15 hover:text-white font-medium">
             <div class="flex items-center gap-3">
               <i class="fas fa-briefcase w-5 text-center text-lg"></i>
               <span>Trabalho e Renda</span>
             </div>
           </a>
           <a href="#educacao"
-            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-white/80 hover:bg-white/10 hover:text-white">
+            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-white/90 hover:bg-white/15 hover:text-white font-medium">
             <div class="flex items-center gap-3">
               <i class="fas fa-graduation-cap w-5 text-center text-lg"></i>
               <span>Educação</span>
             </div>
           </a>
           <a href="#participacao-politica"
-            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-white/80 hover:bg-white/10 hover:text-white">
+            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-white/90 hover:bg-white/15 hover:text-white font-medium">
             <div class="flex items-center gap-3">
               <i class="fas fa-gavel w-5 text-center text-lg"></i>
               <span>Participação Política</span>
             </div>
           </a>
           <a href="#analise-de-cenarios"
-            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-white/80 hover:bg-white/10 hover:text-white">
+            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-white/90 hover:bg-white/15 hover:text-white font-medium">
             <div class="flex items-center gap-3">
               <i class="fas fa-lightbulb w-5 text-center text-lg"></i>
               <span>Análise de Cenários</span>
