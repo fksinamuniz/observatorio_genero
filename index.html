@@ -76,121 +76,119 @@
   <div id="root">
     <div class="flex h-screen bg-[#f0f5ff]">
       <!-- Sidebar Estático -->
-      <div id="sidebar"
+      <aside id="sidebar"
         class="w-64 h-screen bg-gradient-to-b from-violet-300 to-purple-400 text-white fixed left-0 top-0 z-20 flex flex-col shadow-2xl">
         <div class="p-5 flex items-center gap-4">
           <div
             class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-violet-600 text-2xl shadow-lg">
-            <i class="fas fa-scale-balanced"></i>
+            <i class="fas fa-scale-balanced" aria-hidden="true"></i>
           </div>
-          <h2 class="font-bold text-lg whitespace-nowrap">Observatório de Gênero</h2>
+          <h2 class="font-extrabold text-xl leading-tight">Observatório de Gênero</h2>
         </div>
         <nav class="flex-1 px-3 py-2 space-y-1 overflow-y-auto">
           <a href="#painel"
-            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 bg-white/20 text-white font-bold">
+            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-300 bg-white/20 text-white font-bold hover:bg-white/30">
             <div class="flex items-center gap-3">
-              <i class="fas fa-chart-pie w-5 text-center text-lg"></i>
+              <i class="fas fa-chart-pie w-5 text-center text-lg" aria-hidden="true"></i>
               <span>Painel</span>
             </div>
           </a>
           <div>
             <a href="#violencia"
-              class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-white/90 hover:bg-white/15 hover:text-white font-medium">
+              class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-300 text-white/90 hover:bg-white/15 hover:text-white font-medium">
               <div class="flex items-center gap-3">
-                <i class="fas fa-house-chimney-crack w-5 text-center text-lg"></i>
+                <i class="fas fa-house-chimney-crack w-5 text-center text-lg" aria-hidden="true"></i>
                 <span>Violência</span>
               </div>
-              <i class="fas fa-chevron-down text-xs transition-transform duration-300 rotate-180"></i>
+              <i class="fas fa-chevron-down text-xs transition-transform duration-300 rotate-180" aria-hidden="true"></i>
             </a>
             <div class="pl-7 pt-1 pb-2 space-y-1 animate-fade-in">
               <a href="#denuncias"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-200 text-white/80 hover:bg-white/10 hover:text-white">
-                <i class="fas fa-circle fa-xs w-5 text-center"></i>
+                class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-300 text-white/80 hover:bg-white/10 hover:text-white">
+                <i class="fas fa-circle fa-xs w-5 text-center" aria-hidden="true"></i>
                 <span>Denúncias</span>
               </a>
               <a href="#medidas-de-protecao"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-200 text-white/80 hover:bg-white/10 hover:text-white">
-                <i class="fas fa-circle fa-xs w-5 text-center"></i>
+                class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-300 text-white/80 hover:bg-white/10 hover:text-white">
+                <i class="fas fa-circle fa-xs w-5 text-center" aria-hidden="true"></i>
                 <span>Medidas de Proteção</span>
               </a>
               <a href="#estatisticas"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-200 text-white/80 hover:bg-white/10 hover:text-white">
-                <i class="fas fa-circle fa-xs w-5 text-center"></i>
+                class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-300 text-white/80 hover:bg-white/10 hover:text-white">
+                <i class="fas fa-circle fa-xs w-5 text-center" aria-hidden="true"></i>
                 <span>Estatísticas</span>
               </a>
             </div>
           </div>
           <a href="#trabalho-e-renda"
-            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-white/90 hover:bg-white/15 hover:text-white font-medium">
+            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-300 text-white/90 hover:bg-white/15 hover:text-white font-medium">
             <div class="flex items-center gap-3">
-              <i class="fas fa-briefcase w-5 text-center text-lg"></i>
+              <i class="fas fa-briefcase w-5 text-center text-lg" aria-hidden="true"></i>
               <span>Trabalho e Renda</span>
             </div>
           </a>
           <a href="#educacao"
-            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-white/90 hover:bg-white/15 hover:text-white font-medium">
+            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-300 text-white/90 hover:bg-white/15 hover:text-white font-medium">
             <div class="flex items-center gap-3">
-              <i class="fas fa-graduation-cap w-5 text-center text-lg"></i>
+              <i class="fas fa-graduation-cap w-5 text-center text-lg" aria-hidden="true"></i>
               <span>Educação</span>
             </div>
           </a>
           <a href="#participacao-politica"
-            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-white/90 hover:bg-white/15 hover:text-white font-medium">
+            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-300 text-white/90 hover:bg-white/15 hover:text-white font-medium">
             <div class="flex items-center gap-3">
-              <i class="fas fa-gavel w-5 text-center text-lg"></i>
+              <i class="fas fa-gavel w-5 text-center text-lg" aria-hidden="true"></i>
               <span>Participação Política</span>
             </div>
           </a>
           <a href="#analise-de-cenarios"
-            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-white/90 hover:bg-white/15 hover:text-white font-medium">
+            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-300 text-white/90 hover:bg-white/15 hover:text-white font-medium">
             <div class="flex items-center gap-3">
-              <i class="fas fa-lightbulb w-5 text-center text-lg"></i>
+              <i class="fas fa-lightbulb w-5 text-center text-lg" aria-hidden="true"></i>
               <span>Análise de Cenários</span>
             </div>
           </a>
         </nav>
         <div class="p-4 border-t border-purple-900/20">
-          <div class="text-xs text-white/70">Município de Parauapebas</div>
+          <div class="text-xs text-white/80">Município de Parauapebas</div>
         </div>
-      </div>
+      </aside>
 
       <div class="flex-1 flex flex-col overflow-hidden">
-        <!-- Header Estático -->
         <header class="h-16 bg-white shadow-sm flex items-center justify-between px-6 ml-64 flex-shrink-0 z-10">
           <div class="relative max-w-xs w-full">
-            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-            <input type="text" placeholder="Pesquisar..."
-              class="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            <label for="search-input" class="sr-only">Pesquisar</label>
+            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" aria-hidden="true"></i>
+            <input type="text" id="search-input" placeholder="Pesquisar..."
+              class="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-shadow" />
           </div>
           <div class="flex items-center gap-4">
-            <button class="relative w-10 h-10 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors">
-              <i class="fas fa-bell"></i>
+            <button aria-label="Notificações" class="relative w-10 h-10 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors">
+              <i class="fas fa-bell" aria-hidden="true"></i>
               <div
                 class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center border-2 border-white">
                 3</div>
             </button>
-            <button class="w-10 h-10 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors">
-              <i class="fas fa-envelope"></i>
+            <button aria-label="Mensagens" class="w-10 h-10 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
             </button>
-            <button class="w-10 h-10 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors">
-              <i class="fas fa-moon"></i>
+            <button aria-label="Mudar tema" class="w-10 h-10 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors">
+              <i class="fas fa-moon" aria-hidden="true"></i>
             </button>
           </div>
         </header>
 
-        <!-- Conteúdo Principal -->
         <main class="flex-1 overflow-x-hidden overflow-y-auto">
-          <!-- Seção Dashboard (Painel) -->
-          <section id="painel" class="view-section p-4 md:p-6 ml-64">
+          <section id="painel" class="view-section p-4 md:p-6 ml-64" aria-labelledby="painel-titulo">
             <div class="mb-6">
-              <h1 class="text-3xl font-bold text-gray-800">Painel de Controle</h1>
-              <p class="text-gray-500 mt-1">Visão geral dos indicadores de gênero em Parauapebas.</p>
+              <h1 id="painel-titulo" class="text-3xl font-bold text-gray-800">Painel de Controle</h1>
+              <p class="text-gray-600 mt-1">Visão geral dos indicadores de gênero em Parauapebas.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
               <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
                 <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-red-500 to-rose-400"></div>
                 <div class="p-5 flex flex-col items-center text-center">
-                  <i class="fas fa-house-chimney-crack text-4xl text-red-500 mb-3"></i>
+                  <i class="fas fa-house-chimney-crack text-4xl text-red-500 mb-3" aria-hidden="true"></i>
                   <h4 class="text-lg font-semibold text-gray-700">Violência</h4>
                   <p class="text-2xl font-bold text-gray-800 mt-1">1.234</p>
                   <p class="text-sm text-gray-500">denúncias em 2023</p>
@@ -199,7 +197,7 @@
               <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
                 <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 to-cyan-400"></div>
                 <div class="p-5 flex flex-col items-center text-center">
-                  <i class="fas fa-briefcase text-4xl text-blue-500 mb-3"></i>
+                  <i class="fas fa-briefcase text-4xl text-blue-500 mb-3" aria-hidden="true"></i>
                   <h4 class="text-lg font-semibold text-gray-700">Trabalho e Renda</h4>
                   <p class="text-2xl font-bold text-gray-800 mt-1">R$ 2.150</p>
                   <p class="text-sm text-gray-500">renda média feminina</p>
@@ -208,7 +206,7 @@
               <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
                 <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-green-500 to-emerald-400"></div>
                 <div class="p-5 flex flex-col items-center text-center">
-                  <i class="fas fa-graduation-cap text-4xl text-green-500 mb-3"></i>
+                  <i class="fas fa-graduation-cap text-4xl text-green-500 mb-3" aria-hidden="true"></i>
                   <h4 class="text-lg font-semibold text-gray-700">Educação</h4>
                   <p class="text-2xl font-bold text-gray-800 mt-1">85%</p>
                   <p class="text-sm text-gray-500">de alfabetização</p>
@@ -217,7 +215,7 @@
               <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
                 <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-yellow-500 to-amber-400"></div>
                 <div class="p-5 flex flex-col items-center text-center">
-                  <i class="fas fa-gavel text-4xl text-yellow-500 mb-3"></i>
+                  <i class="fas fa-gavel text-4xl text-yellow-500 mb-3" aria-hidden="true"></i>
                   <h4 class="text-lg font-semibold text-gray-700">Participação Política</h4>
                   <p class="text-2xl font-bold text-gray-800 mt-1">30%</p>
                   <p class="text-sm text-gray-500">de mulheres em cargos eletivos</p>
@@ -229,7 +227,7 @@
                  <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
                     <div class="p-5 border-b border-gray-200/80 bg-white/50">
                         <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3">
-                            <i class="fas fa-chart-line text-blue-500"></i>
+                            <i class="fas fa-chart-line text-blue-500" aria-hidden="true"></i>
                             <span>Evolução da Violência Doméstica</span>
                         </h3>
                     </div>
@@ -240,30 +238,30 @@
                             <button class="px-3 py-1 text-sm rounded-full transition-colors bg-indigo-500 text-white">2023</button>
                         </div>
                         <div class="h-64">
-                            <svg width="100%" height="100%" viewBox="0 0 500 256">
+                            <svg width="100%" height="100%" viewBox="0 0 500 256" aria-label="Gráfico de barras mostrando a evolução da violência doméstica de 2021 a 2023.">
                                 <g class="recharts-layer recharts-cartesian-grid">
-                                    <line stroke="#ccc" stroke-dasharray="3 3" x1="50" y1="20" x2="480" y2="20"></line>
-                                    <line stroke="#ccc" stroke-dasharray="3 3" x1="50" y1="73" x2="480" y2="73"></line>
-                                    <line stroke="#ccc" stroke-dasharray="3 3" x1="50" y1="126" x2="480" y2="126"></line>
-                                    <line stroke="#ccc" stroke-dasharray="3 3" x1="50" y1="179" x2="480" y2="179"></line>
-                                    <line stroke="#ccc" stroke-dasharray="3 3" x1="50" y1="232" x2="480" y2="232"></line>
+                                    <line stroke="#e5e7eb" stroke-dasharray="3 3" x1="50" y1="20" x2="480" y2="20"></line>
+                                    <line stroke="#e5e7eb" stroke-dasharray="3 3" x1="50" y1="73" x2="480" y2="73"></line>
+                                    <line stroke="#e5e7eb" stroke-dasharray="3 3" x1="50" y1="126" x2="480" y2="126"></line>
+                                    <line stroke="#e5e7eb" stroke-dasharray="3 3" x1="50" y1="179" x2="480" y2="179"></line>
+                                    <line stroke="#e5e7eb" stroke-dasharray="3 3" x1="50" y1="232" x2="480" y2="232"></line>
                                 </g>
                                 <g class="recharts-layer recharts-xAxis xAxis">
-                                    <text x="143" y="247" text-anchor="middle" fill="#666">2021</text>
-                                    <text x="273" y="247" text-anchor="middle" fill="#666">2022</text>
-                                    <text x="403" y="247" text-anchor="middle" fill="#666">2023</text>
+                                    <text x="143" y="247" text-anchor="middle" fill="#6b7280">2021</text>
+                                    <text x="273" y="247" text-anchor="middle" fill="#6b7280">2022</text>
+                                    <text x="403" y="247" text-anchor="middle" fill="#6b7280">2023</text>
                                 </g>
                                 <g class="recharts-layer recharts-yAxis yAxis">
-                                    <text x="40" y="232" text-anchor="end" fill="#666">0</text>
-                                    <text x="40" y="179" text-anchor="end" fill="#666">400</text>
-                                    <text x="40" y="126" text-anchor="end" fill="#666">800</text>
-                                    <text x="40" y="73" text-anchor="end" fill="#666">1200</text>
-                                    <text x="40" y="20" text-anchor="end" fill="#666">1600</text>
+                                    <text x="40" y="232" text-anchor="end" fill="#6b7280">0</text>
+                                    <text x="40" y="179" text-anchor="end" fill="#6b7280">400</text>
+                                    <text x="40" y="126" text-anchor="end" fill="#6b7280">800</text>
+                                    <text x="40" y="73" text-anchor="end" fill="#6b7280">1200</text>
+                                    <text x="40" y="20" text-anchor="end" fill="#6b7280">1600</text>
                                 </g>
                                 <g class="recharts-layer recharts-bar">
-                                    <rect x="118" y="77" width="50" height="155" fill="#8b5cf6"></rect>
-                                    <rect x="248" y="44" width="50" height="188" fill="#8b5cf6"></rect>
-                                    <rect x="378" y="29" width="50" height="203" fill="#8b5cf6"></rect>
+                                    <rect x="118" y="77" width="50" height="155" fill="#8b5cf6" rx="4" ry="4"></rect>
+                                    <rect x="248" y="44" width="50" height="188" fill="#8b5cf6" rx="4" ry="4"></rect>
+                                    <rect x="378" y="29" width="50" height="203" fill="#8b5cf6" rx="4" ry="4"></rect>
                                 </g>
                             </svg>
                         </div>
@@ -272,7 +270,7 @@
                  <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
                      <div class="p-5 border-b border-gray-200/80 bg-white/50">
                         <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3">
-                            <i class="fas fa-map-marker-alt text-blue-500"></i>
+                            <i class="fas fa-map-marker-alt text-blue-500" aria-hidden="true"></i>
                             <span>Distribuição por Setor</span>
                         </h3>
                     </div>
@@ -284,7 +282,7 @@
                             <button class="px-3 py-1 text-sm rounded-full transition-colors bg-purple-500 text-white">Outros</button>
                         </div>
                          <div class="h-72">
-                            <svg width="100%" height="100%" viewBox="0 0 500 288">
+                            <svg width="100%" height="100%" viewBox="0 0 500 288" aria-label="Gráfico de pizza mostrando a distribuição de casos por setor.">
                                 <g transform="translate(250, 120)">
                                     <path d="M8.57015485453229e-15,-100A100,100,0,1,1,-95.10565162951535,30.901699437494745L0,0Z" fill="#6366f1" stroke="#fff"></path>
                                     <path d="M-95.10565162951535,30.901699437494745A100,100,0,0,1,-80.90169943749476,-58.7785252292473L0,0Z" fill="#8b5cf6" stroke="#fff"></path>
@@ -292,10 +290,10 @@
                                     <path d="M-5.474498305609458e-14,-100A100,100,0,0,1,8.57015485453229e-15,-100L0,0Z" fill="#ddd6fe" stroke="#fff"></path>
                                 </g>
                                 <g transform="translate(50, 260)">
-                                    <rect width="10" height="10" y="0" fill="#6366f1"></rect><text x="15" y="10" fill="#666">Urbano</text>
-                                    <rect width="10" height="10" y="0" x="80" fill="#8b5cf6"></rect><text x="95" y="10" fill="#666">Rural</text>
-                                    <rect width="10" height="10" y="0" x="150" fill="#a78bfa"></rect><text x="165" y="10" fill="#666">Indígena</text>
-                                    <rect width="10" height="10" y="0" x="240" fill="#ddd6fe"></rect><text x="255" y="10" fill="#666">Outros</text>
+                                    <rect width="10" height="10" y="0" fill="#6366f1"></rect><text x="15" y="10" fill="#6b7280">Urbano</text>
+                                    <rect width="10" height="10" y="0" x="80" fill="#8b5cf6"></rect><text x="95" y="10" fill="#6b7280">Rural</text>
+                                    <rect width="10" height="10" y="0" x="150" fill="#a78bfa"></rect><text x="165" y="10" fill="#6b7280">Indígena</text>
+                                    <rect width="10" height="10" y="0" x="240" fill="#ddd6fe"></rect><text x="255" y="10" fill="#6b7280">Outros</text>
                                 </g>
                             </svg>
                         </div>
@@ -303,11 +301,11 @@
                 </div>
               </div>
 
-              <div>
+              <aside>
                  <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
                     <div class="p-5 border-b border-gray-200/80 bg-white/50">
                         <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3">
-                            <i class="fas fa-lightbulb text-blue-500"></i>
+                            <i class="fas fa-lightbulb text-blue-500" aria-hidden="true"></i>
                             <span>Análise de Cenários</span>
                         </h3>
                     </div>
@@ -321,7 +319,7 @@
                 <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative mt-6">
                     <div class="p-5 border-b border-gray-200/80 bg-white/50">
                         <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3">
-                            <i class="fas fa-link text-blue-500"></i>
+                            <i class="fas fa-link text-blue-500" aria-hidden="true"></i>
                             <span>Links Rápidos</span>
                         </h3>
                     </div>
@@ -333,28 +331,28 @@
                         </ul>
                     </div>
                 </div>
-              </div>
+              </aside>
             </div>
           </section>
 
           <!-- Seções de Conteúdo Adicionais -->
-          <section id="violencia" class="view-section p-4 md:p-6 ml-64">
+          <section id="violencia" class="view-section p-4 md:p-6 ml-64" aria-labelledby="violencia-titulo">
             <div class="mb-6">
-                <h1 class="text-3xl font-bold text-gray-800">Violência de Gênero</h1>
-                <p class="text-gray-500 mt-1">Análise detalhada sobre os casos de violência contra a mulher em Parauapebas.</p>
+                <h1 id="violencia-titulo" class="text-3xl font-bold text-gray-800">Violência de Gênero</h1>
+                <p class="text-gray-600 mt-1">Análise detalhada sobre os casos de violência contra a mulher em Parauapebas.</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="lg:col-span-2">
                     <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
                         <div class="p-5 border-b border-gray-200/80 bg-white/50">
-                            <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-chart-line text-blue-500"></i><span>Evolução Anual das Denúncias</span></h3>
+                            <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-chart-line text-blue-500" aria-hidden="true"></i><span>Evolução Anual das Denúncias</span></h3>
                         </div>
                         <div class="p-5">
                             <div class="h-80">
-                                <svg width="100%" height="100%" viewBox="0 0 500 320">
-                                    <g class="recharts-layer recharts-cartesian-grid"><line stroke="#ccc" stroke-dasharray="3 3" x1="60" y1="5" x2="60" y2="275"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="162.5" y1="5" x2="162.5" y2="275"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="265" y1="5" x2="265" y2="275"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="367.5" y1="5" x2="367.5" y2="275"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="470" y1="5" x2="470" y2="275"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="60" y1="275" x2="470" y2="275"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="60" y1="207.5" x2="470" y2="207.5"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="60" y1="140" x2="470" y2="140"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="60" y1="72.5" x2="470" y2="72.5"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="60" y1="5" x2="470" y2="5"></line></g>
-                                    <g class="recharts-layer recharts-xAxis xAxis"><text x="111.25" y="290" text-anchor="middle" fill="#666">2020</text><text x="213.75" y="290" text-anchor="middle" fill="#666">2021</text><text x="316.25" y="290" text-anchor="middle" fill="#666">2022</text><text x="418.75" y="290" text-anchor="middle" fill="#666">2023</text></g>
-                                    <g class="recharts-layer recharts-yAxis yAxis"><text x="50" y="275" text-anchor="end" fill="#666">0</text><text x="50" y="207.5" text-anchor="end" fill="#666">400</text><text x="50" y="140" text-anchor="end" fill="#666">800</text><text x="50" y="72.5" text-anchor="end" fill="#666">1200</text></g>
+                                <svg width="100%" height="100%" viewBox="0 0 500 320" aria-label="Gráfico de barras mostrando a evolução anual das denúncias de 2020 a 2023.">
+                                    <g class="recharts-layer recharts-cartesian-grid"><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="5" x2="60" y2="275"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="162.5" y1="5" x2="162.5" y2="275"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="265" y1="5" x2="265" y2="275"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="367.5" y1="5" x2="367.5" y2="275"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="470" y1="5" x2="470" y2="275"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="275" x2="470" y2="275"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="207.5" x2="470" y2="207.5"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="140" x2="470" y2="140"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="72.5" x2="470" y2="72.5"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="5" x2="470" y2="5"></line></g>
+                                    <g class="recharts-layer recharts-xAxis xAxis"><text x="111.25" y="290" text-anchor="middle" fill="#6b7280">2020</text><text x="213.75" y="290" text-anchor="middle" fill="#6b7280">2021</text><text x="316.25" y="290" text-anchor="middle" fill="#6b7280">2022</text><text x="418.75" y="290" text-anchor="middle" fill="#6b7280">2023</text></g>
+                                    <g class="recharts-layer recharts-yAxis yAxis"><text x="50" y="275" text-anchor="end" fill="#6b7280">0</text><text x="50" y="207.5" text-anchor="end" fill="#6b7280">400</text><text x="50" y="140" text-anchor="end" fill="#6b7280">800</text><text x="50" y="72.5" text-anchor="end" fill="#6b7280">1200</text></g>
                                     <g class="recharts-layer recharts-bar"><rect x="90.625" y="125.185" width="41.25" height="149.815" fill="#8b5cf6" rx="4" ry="4"></rect><rect x="193.125" y="78.148" width="41.25" height="196.852" fill="#8b5cf6" rx="4" ry="4"></rect><rect x="295.625" y="44.074" width="41.25" height="230.926" fill="#8b5cf6" rx="4" ry="4"></rect><rect x="398.125" y="23.704" width="41.25" height="251.296" fill="#8b5cf6" rx="4" ry="4"></rect></g>
                                 </svg>
                             </div>
@@ -364,11 +362,11 @@
                 <div class="lg:col-span-1">
                     <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
                         <div class="p-5 border-b border-gray-200/80 bg-white/50">
-                            <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-chart-pie text-blue-500"></i><span>Tipos de Violência (2023)</span></h3>
+                            <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-chart-pie text-blue-500" aria-hidden="true"></i><span>Tipos de Violência (2023)</span></h3>
                         </div>
                         <div class="p-5">
                             <div class="h-80">
-                                <svg width="100%" height="100%" viewBox="0 0 500 320">
+                                <svg width="100%" height="100%" viewBox="0 0 500 320" aria-label="Gráfico de pizza mostrando os tipos de violência em 2023.">
                                     <g transform="translate(250, 140)">
                                         <path d="M5.511311029285261e-15,-90A90,90,0,1,1,-80.90169943749474,40.00000000000001L-53.93446629166316,26.66666666666667Z" fill="#8b5cf6" stroke="#fff"></path>
                                         <path d="M-80.90169943749474,40.00000000000001A90,90,0,0,1,2.835921034237172e-14,-90L1.8906140228247814e-14,-60Z" fill="#a78bfa" stroke="#fff"></path>
@@ -377,9 +375,9 @@
                                         <path d="M85.6133038612143,-27.81086580970836A90,90,0,0,1,5.511311029285261e-15,-90L3.6742073528568404e-15,-60Z" fill="#ede9fe" stroke="#fff"></path>
                                     </g>
                                     <g transform="translate(50, 290)">
-                                        <rect width="10" height="10" fill="#8b5cf6"></rect><text x="15" y="10" fill="#666">Física</text>
-                                        <rect x="70" width="10" height="10" fill="#a78bfa"></rect><text x="85" y="10" fill="#666">Psicológica</text>
-                                        <rect x="180" width="10" height="10" fill="#c4b5fd"></rect><text x="195" y="10" fill="#666">Moral</text>
+                                        <rect width="10" height="10" fill="#8b5cf6"></rect><text x="15" y="10" fill="#6b7280">Física</text>
+                                        <rect x="70" width="10" height="10" fill="#a78bfa"></rect><text x="85" y="10" fill="#6b7280">Psicológica</text>
+                                        <rect x="180" width="10" height="10" fill="#c4b5fd"></rect><text x="195" y="10" fill="#6b7280">Moral</text>
                                     </g>
                                 </svg>
                             </div>
@@ -390,20 +388,20 @@
             <div class="mt-6">
                 <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
                     <div class="p-5 border-b border-gray-200/80 bg-white/50">
-                        <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-folder-open text-blue-500"></i><span>Explorar Seções</span></h3>
+                        <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-folder-open text-blue-500" aria-hidden="true"></i><span>Explorar Seções</span></h3>
                     </div>
                     <div class="p-5">
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <a href="#denuncias" class="block bg-purple-100 text-purple-800 p-4 rounded-lg hover:bg-purple-200 transition-colors shadow-sm hover:shadow-md">
-                                <h4 class="font-bold"><i class="fas fa-bullhorn mr-2"></i>Denúncias</h4>
+                                <h4 class="font-bold"><i class="fas fa-bullhorn mr-2" aria-hidden="true"></i>Denúncias</h4>
                                 <p class="text-sm mt-1">Veja dados detalhados sobre as denúncias registradas.</p>
                             </a>
                             <a href="#medidas-de-protecao" class="block bg-purple-100 text-purple-800 p-4 rounded-lg hover:bg-purple-200 transition-colors shadow-sm hover:shadow-md">
-                                <h4 class="font-bold"><i class="fas fa-shield-halved mr-2"></i>Medidas de Proteção</h4>
+                                <h4 class="font-bold"><i class="fas fa-shield-halved mr-2" aria-hidden="true"></i>Medidas de Proteção</h4>
                                 <p class="text-sm mt-1">Informações sobre as medidas protetivas aplicadas.</p>
                             </a>
                             <a href="#estatisticas" class="block bg-purple-100 text-purple-800 p-4 rounded-lg hover:bg-purple-200 transition-colors shadow-sm hover:shadow-md">
-                                <h4 class="font-bold"><i class="fas fa-database mr-2"></i>Estatísticas</h4>
+                                <h4 class="font-bold"><i class="fas fa-database mr-2" aria-hidden="true"></i>Estatísticas</h4>
                                 <p class="text-sm mt-1">Consulte estatísticas e relatórios completos.</p>
                             </a>
                         </div>
@@ -412,10 +410,10 @@
             </div>
           </section>
 
-          <section id="denuncias" class="view-section p-4 md:p-6 ml-64">
+          <section id="denuncias" class="view-section p-4 md:p-6 ml-64" aria-labelledby="denuncias-titulo">
             <div class="mb-6">
-                <h1 class="text-3xl font-bold text-gray-800">Registro de Denúncias</h1>
-                <p class="text-gray-500 mt-1">Dados detalhados sobre as denúncias de violência registradas.</p>
+                <h1 id="denuncias-titulo" class="text-3xl font-bold text-gray-800">Registro de Denúncias</h1>
+                <p class="text-gray-600 mt-1">Dados detalhados sobre as denúncias de violência registradas.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                  <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative"><div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-red-500 to-rose-400"></div><div class="p-5"><h4 class="text-gray-500 font-medium">Total de Denúncias (2023)</h4><p class="text-3xl font-bold text-gray-800 mt-1">1.234</p></div></div>
@@ -423,7 +421,7 @@
                  <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative"><div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 to-cyan-400"></div><div class="p-5"><h4 class="text-gray-500 font-medium">Bairro com Maior Incidência</h4><p class="text-3xl font-bold text-gray-800 mt-1">Cidade Nova</p></div></div>
             </div>
             <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                <div class="p-5 border-b border-gray-200/80 bg-white/50"><h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-list-alt text-blue-500"></i><span>Últimas Denúncias Registradas</span></h3></div>
+                <div class="p-5 border-b border-gray-200/80 bg-white/50"><h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-list-alt text-blue-500" aria-hidden="true"></i><span>Últimas Denúncias Registradas</span></h3></div>
                 <div class="p-0">
                     <div class="overflow-x-auto">
                         <table class="w-full text-sm text-left text-gray-500">
@@ -446,10 +444,10 @@
             </div>
           </section>
 
-          <section id="medidas-de-protecao" class="view-section p-4 md:p-6 ml-64">
+          <section id="medidas-de-protecao" class="view-section p-4 md:p-6 ml-64" aria-labelledby="medidas-titulo">
              <div class="mb-6">
-                <h1 class="text-3xl font-bold text-gray-800">Acompanhamento de Medidas Protetivas</h1>
-                <p class="text-gray-500 mt-1">Informações sobre as medidas protetivas de urgência aplicadas.</p>
+                <h1 id="medidas-titulo" class="text-3xl font-bold text-gray-800">Acompanhamento de Medidas Protetivas</h1>
+                <p class="text-gray-600 mt-1">Informações sobre as medidas protetivas de urgência aplicadas.</p>
             </div>
              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                  <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative"><div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 to-cyan-400"></div><div class="p-5"><h4 class="text-gray-500 font-medium">Medidas Solicitadas (2023)</h4><p class="text-3xl font-bold text-gray-800 mt-1">987</p></div></div>
@@ -457,13 +455,13 @@
                  <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative"><div class="p-5"><h4 class="text-gray-500 font-medium">Taxa de Atendimento</h4><p class="text-3xl font-bold text-gray-800 mt-1">90.3%</p></div></div>
             </div>
             <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                <div class="p-5 border-b border-gray-200/80 bg-white/50"><h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-chart-bar text-blue-500"></i><span>Tipos de Medidas Concedidas</span></h3></div>
+                <div class="p-5 border-b border-gray-200/80 bg-white/50"><h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-chart-bar text-blue-500" aria-hidden="true"></i><span>Tipos de Medidas Concedidas</span></h3></div>
                 <div class="p-5">
                     <div class="h-96">
-                        <svg width="100%" height="100%" viewBox="0 0 500 384">
-                            <g class="recharts-layer recharts-cartesian-grid"><line stroke="#ccc" stroke-dasharray="3 3" x1="170" y1="5" x2="470" y2="5"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="170" y1="87.66" x2="470" y2="87.66"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="170" y1="170.33" x2="470" y2="170.33"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="170" y1="253" x2="470" y2="253"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="170" y1="335.66" x2="470" y2="335.66"></line></g>
-                            <g class="recharts-layer recharts-xAxis xAxis"><text x="170" y="350" text-anchor="middle" fill="#666">0</text><text x="245" y="350" text-anchor="middle" fill="#666">200</text><text x="320" y="350" text-anchor="middle" fill="#666">400</text><text x="395" y="350" text-anchor="middle" fill="#666">600</text><text x="470" y="350" text-anchor="middle" fill="#666">800</text></g>
-                            <g class="recharts-layer recharts-yAxis yAxis"><text y="46.33" x="160" text-anchor="end" fill="#666">Afastamento do Lar</text><text y="129" x="160" text-anchor="end" fill="#666">Proibição de Contato</text><text y="211.66" x="160" text-anchor="end" fill="#666">Suspensão de Posse de Arma</text><text y="294.33" x="160" text-anchor="end" fill="#666">Restrição de Visita</text></g>
+                        <svg width="100%" height="100%" viewBox="0 0 500 384" aria-label="Gráfico de barras horizontais mostrando os tipos de medidas protetivas concedidas.">
+                            <g class="recharts-layer recharts-cartesian-grid"><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="170" y1="5" x2="470" y2="5"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="170" y1="87.66" x2="470" y2="87.66"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="170" y1="170.33" x2="470" y2="170.33"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="170" y1="253" x2="470" y2="253"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="170" y1="335.66" x2="470" y2="335.66"></line></g>
+                            <g class="recharts-layer recharts-xAxis xAxis"><text x="170" y="350" text-anchor="middle" fill="#6b7280">0</text><text x="245" y="350" text-anchor="middle" fill="#6b7280">200</text><text x="320" y="350" text-anchor="middle" fill="#6b7280">400</text><text x="395" y="350" text-anchor="middle" fill="#6b7280">600</text><text x="470" y="350" text-anchor="middle" fill="#6b7280">800</text></g>
+                            <g class="recharts-layer recharts-yAxis yAxis"><text y="46.33" x="160" text-anchor="end" fill="#6b7280">Afastamento do Lar</text><text y="129" x="160" text-anchor="end" fill="#6b7280">Proibição de Contato</text><text y="211.66" x="160" text-anchor="end" fill="#6b7280">Suspensão de Posse de Arma</text><text y="294.33" x="160" text-anchor="end" fill="#6b7280">Restrição de Visita</text></g>
                             <g class="recharts-layer recharts-bar"><rect y="25.33" x="170" width="168.75" height="42" fill="#8b5cf6" ry="4"></rect><rect y="108" x="170" width="270" height="42" fill="#8b5cf6" ry="4"></rect><rect y="190.66" x="170" width="56.25" height="42" fill="#8b5cf6" ry="4"></rect><rect y="273.33" x="170" width="116.25" height="42" fill="#8b5cf6" ry="4"></rect></g>
                         </svg>
                     </div>
@@ -471,30 +469,30 @@
             </div>
           </section>
 
-          <section id="estatisticas" class="view-section p-4 md:p-6 ml-64">
+          <section id="estatisticas" class="view-section p-4 md:p-6 ml-64" aria-labelledby="estatisticas-titulo">
             <div class="mb-6">
-                <h1 class="text-3xl font-bold text-gray-800">Estatísticas Detalhadas</h1>
-                <p class="text-gray-500 mt-1">Análise aprofundada do perfil das vítimas e agressores.</p>
+                <h1 id="estatisticas-titulo" class="text-3xl font-bold text-gray-800">Estatísticas Detalhadas</h1>
+                <p class="text-gray-600 mt-1">Análise aprofundada do perfil das vítimas e agressores.</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                    <div class="p-5 border-b border-gray-200/80 bg-white/50"><h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-user-friends text-blue-500"></i><span>Perfil da Vítima (Faixa Etária)</span></h3></div>
+                    <div class="p-5 border-b border-gray-200/80 bg-white/50"><h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-user-friends text-blue-500" aria-hidden="true"></i><span>Perfil da Vítima (Faixa Etária)</span></h3></div>
                     <div class="p-5">
                         <div class="h-80">
-                            <svg width="100%" height="100%" viewBox="0 0 500 320">
-                                <g class="recharts-layer recharts-cartesian-grid"><line stroke="#ccc" stroke-dasharray="3 3" x1="60" y1="5" x2="480" y2="5"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="60" y1="67.5" x2="480" y2="67.5"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="60" y1="130" x2="480" y2="130"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="60" y1="192.5" x2="480" y2="192.5"></line><line stroke="#ccc" stroke-dasharray="3 3" x1="60" y1="255" x2="480" y2="255"></line></g>
-                                <g class="recharts-layer recharts-xAxis xAxis"><text x="102" y="270" text-anchor="middle" fill="#666">18-24 anos</text><text x="186" y="270" text-anchor="middle" fill="#666">25-34 anos</text><text x="270" y="270" text-anchor="middle" fill="#666">35-44 anos</text><text x="354" y="270" text-anchor="middle" fill="#666">45-59 anos</text><text x="438" y="270" text-anchor="middle" fill="#666">60+ anos</text></g>
-                                <g class="recharts-layer recharts-yAxis yAxis"><text x="50" y="255" text-anchor="end" fill="#666">0</text><text x="50" y="192.5" text-anchor="end" fill="#666">10</text><text x="50" y="130" text-anchor="end" fill="#666">20</text><text x="50" y="67.5" text-anchor="end" fill="#666">30</text><text x="50" y="5" text-anchor="end" fill="#666">40</text></g>
-                                <g class="recharts-layer recharts-bar"><rect x="81" y="130" width="42" height="125" fill="#6366f1"></rect><rect x="165" y="5" width="42" height="250" fill="#6366f1"></rect><rect x="249" y="161.25" width="42" height="93.75" fill="#6366f1"></rect><rect x="333" y="217.5" width="42" height="37.5" fill="#6366f1"></rect><rect x="417" y="245.625" width="42" height="9.375" fill="#6366f1"></rect></g>
+                            <svg width="100%" height="100%" viewBox="0 0 500 320" aria-label="Gráfico de barras mostrando o perfil da vítima por faixa etária.">
+                                <g class="recharts-layer recharts-cartesian-grid"><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="5" x2="480" y2="5"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="67.5" x2="480" y2="67.5"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="130" x2="480" y2="130"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="192.5" x2="480" y2="192.5"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="255" x2="480" y2="255"></line></g>
+                                <g class="recharts-layer recharts-xAxis xAxis"><text x="102" y="270" text-anchor="middle" fill="#6b7280">18-24 anos</text><text x="186" y="270" text-anchor="middle" fill="#6b7280">25-34 anos</text><text x="270" y="270" text-anchor="middle" fill="#6b7280">35-44 anos</text><text x="354" y="270" text-anchor="middle" fill="#6b7280">45-59 anos</text><text x="438" y="270" text-anchor="middle" fill="#6b7280">60+ anos</text></g>
+                                <g class="recharts-layer recharts-yAxis yAxis"><text x="50" y="255" text-anchor="end" fill="#6b7280">0</text><text x="50" y="192.5" text-anchor="end" fill="#6b7280">10</text><text x="50" y="130" text-anchor="end" fill="#6b7280">20</text><text x="50" y="67.5" text-anchor="end" fill="#6b7280">30</text><text x="50" y="5" text-anchor="end" fill="#6b7280">40</text></g>
+                                <g class="recharts-layer recharts-bar"><rect x="81" y="130" width="42" height="125" fill="#6366f1" rx="4" ry="4"></rect><rect x="165" y="5" width="42" height="250" fill="#6366f1" rx="4" ry="4"></rect><rect x="249" y="161.25" width="42" height="93.75" fill="#6366f1" rx="4" ry="4"></rect><rect x="333" y="217.5" width="42" height="37.5" fill="#6366f1" rx="4" ry="4"></rect><rect x="417" y="245.625" width="42" height="9.375" fill="#6366f1" rx="4" ry="4"></rect></g>
                             </svg>
                         </div>
                     </div>
                 </div>
                 <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                    <div class="p-5 border-b border-gray-200/80 bg-white/50"><h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-male text-blue-500"></i><span>Perfil do Agressor</span></h3></div>
+                    <div class="p-5 border-b border-gray-200/80 bg-white/50"><h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-male text-blue-500" aria-hidden="true"></i><span>Perfil do Agressor</span></h3></div>
                     <div class="p-5">
                         <div class="h-80">
-                            <svg width="100%" height="100%" viewBox="0 0 500 320">
+                            <svg width="100%" height="100%" viewBox="0 0 500 320" aria-label="Gráfico de pizza mostrando o perfil do agressor.">
                                 <g transform="translate(250, 140)">
                                     <path d="M6.123233995736766e-15,-100A100,100,0,1,1,-86.60254037844388,49.99999999999998L0,0Z" fill="#6366f1" stroke="#fff"></path>
                                     <path d="M-86.60254037844388,49.99999999999998A100,100,0,0,1,3.216245213612431e-14,-100L0,0Z" fill="#8b5cf6" stroke="#fff"></path>
@@ -502,9 +500,9 @@
                                     <path d="M58.7785252292473,-80.90169943749476A100,100,0,0,1,6.123233995736766e-15,-100L0,0Z" fill="#c4b5fd" stroke="#fff"></path>
                                 </g>
                                 <g transform="translate(50, 290)">
-                                    <rect width="10" height="10" fill="#6366f1"></rect><text x="15" y="10" fill="#666">Companheiro</text>
-                                    <rect x="120" width="10" height="10" fill="#8b5cf6"></rect><text x="135" y="10" fill="#666">Ex-companheiro</text>
-                                    <rect x="270" width="10" height="10" fill="#a78bfa"></rect><text x="285" y="10" fill="#666">Familiar</text>
+                                    <rect width="10" height="10" fill="#6366f1"></rect><text x="15" y="10" fill="#6b7280">Companheiro</text>
+                                    <rect x="120" width="10" height="10" fill="#8b5cf6"></rect><text x="135" y="10" fill="#6b7280">Ex-companheiro</text>
+                                    <rect x="270" width="10" height="10" fill="#a78bfa"></rect><text x="285" y="10" fill="#6b7280">Familiar</text>
                                 </g>
                             </svg>
                         </div>
@@ -513,19 +511,19 @@
             </div>
           </section>
 
-          <section id="trabalho-e-renda" class="view-section p-4 md:p-6 ml-64">
-             <div class="bg-white rounded-xl shadow-lg p-6"><h1 class="text-2xl font-bold text-gray-800">Trabalho e Renda</h1><p class="text-gray-500 mt-2">Dados e análises sobre trabalho e renda serão exibidos aqui. Esta seção está em construção.</p></div>
+          <section id="trabalho-e-renda" class="view-section p-4 md:p-6 ml-64" aria-labelledby="trabalho-titulo">
+             <div class="bg-white rounded-xl shadow-lg p-6"><h1 id="trabalho-titulo" class="text-2xl font-bold text-gray-800">Trabalho e Renda</h1><p class="text-gray-600 mt-2">Dados e análises sobre trabalho e renda serão exibidos aqui. Esta seção está em construção.</p></div>
           </section>
           
-          <section id="educacao" class="view-section p-4 md:p-6 ml-64">
-            <div class="bg-white rounded-xl shadow-lg p-6"><h1 class="text-2xl font-bold text-gray-800">Educação</h1><p class="text-gray-500 mt-2">Dados e análises sobre educação serão exibidos aqui. Esta seção está em construção.</p></div>
+          <section id="educacao" class="view-section p-4 md:p-6 ml-64" aria-labelledby="educacao-titulo">
+            <div class="bg-white rounded-xl shadow-lg p-6"><h1 id="educacao-titulo" class="text-2xl font-bold text-gray-800">Educação</h1><p class="text-gray-600 mt-2">Dados e análises sobre educação serão exibidos aqui. Esta seção está em construção.</p></div>
           </section>
 
-          <section id="participacao-politica" class="view-section p-4 md:p-6 ml-64">
-            <div class="bg-white rounded-xl shadow-lg p-6"><h1 class="text-2xl font-bold text-gray-800">Participação Política</h1><p class="text-gray-500 mt-2">Dados e análises sobre participação política serão exibidos aqui. Esta seção está em construção.</p></div>
+          <section id="participacao-politica" class="view-section p-4 md:p-6 ml-64" aria-labelledby="politica-titulo">
+            <div class="bg-white rounded-xl shadow-lg p-6"><h1 id="politica-titulo" class="text-2xl font-bold text-gray-800">Participação Política</h1><p class="text-gray-600 mt-2">Dados e análises sobre participação política serão exibidos aqui. Esta seção está em construção.</p></div>
           </section>
 
-          <section id="analise-de-cenarios" class="view-section p-4 md:p-6 ml-64 h-full overflow-y-auto">
+          <section id="analise-de-cenarios" class="view-section p-4 md:p-6 ml-64 h-full overflow-y-auto" aria-labelledby="analise-titulo">
             <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative grid grid-cols-1 lg:grid-cols-3 gap-0 min-h-[calc(100vh-5rem)]">
                 <div class="lg:col-span-2 p-6 flex flex-col">
                     <div class="aspect-video w-full rounded-xl bg-gray-200 mb-6 relative overflow-hidden shadow-lg">
@@ -535,7 +533,7 @@
                         </div>
                     </div>
                     <div class="flex-1">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Desenvolvimento do Cenário</h2>
+                        <h2 id="analise-titulo" class="text-2xl font-bold text-gray-800 mb-4">Desenvolvimento do Cenário</h2>
                         <div class="space-y-3 animate-pulse">
                             <div class="h-4 bg-gray-200 rounded w-full"></div>
                             <div class="h-4 bg-gray-200 rounded w-5/6"></div>
@@ -546,21 +544,21 @@
                 </div>
                 <div class="lg:col-span-1 bg-gray-50/50 p-6 flex flex-col gap-6 border-l border-gray-200/80">
                     <div>
-                        <h3 class="text-lg font-semibold text-gray-700 mb-3"><i class="fas fa-tasks mr-2 text-indigo-500"></i>Opções de Política Pública</h3>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-3"><i class="fas fa-tasks mr-2 text-indigo-500" aria-hidden="true"></i>Opções de Política Pública</h3>
                         <div class="flex flex-col gap-3">
                             <button disabled class="w-full text-left bg-white p-4 rounded-lg shadow-sm border border-gray-200 disabled:opacity-50">Aguardando cenário...</button>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-lg font-semibold text-gray-700 mb-3"><i class="fas fa-bullseye mr-2 text-pink-500"></i>Objetivo da Política</h3>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-3"><i class="fas fa-bullseye mr-2 text-pink-500" aria-hidden="true"></i>Objetivo da Política</h3>
                         <p class="text-sm text-gray-600 p-3 bg-white rounded-lg shadow-sm">Nenhum objetivo definido.</p>
                     </div>
                     <div>
-                        <h3 class="text-lg font-semibold text-gray-700 mb-3"><i class="fas fa-chart-line mr-2 text-green-500"></i>Indicadores-Chave</h3>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-3"><i class="fas fa-chart-line mr-2 text-green-500" aria-hidden="true"></i>Indicadores-Chave</h3>
                         <p class="text-sm text-gray-500 italic p-3 bg-white rounded-lg shadow-sm">Nenhum indicador acompanhado.</p>
                     </div>
                     <button disabled class="mt-auto w-full bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-red-600 transition-colors disabled:bg-gray-400">
-                        <i class="fas fa-sync-alt mr-2"></i>Reiniciar Simulação
+                        <i class="fas fa-sync-alt mr-2" aria-hidden="true"></i>Reiniciar Simulação
                     </button>
                 </div>
             </div>
@@ -568,32 +566,11 @@
         </main>
       </div>
 
-      <!-- Chatbot Estático -->
       <button
+        aria-label="Abrir assistente virtual"
         class="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-full shadow-2xl flex items-center justify-center text-3xl z-50 transform hover:scale-110 transition-transform">
-        <i class="fas fa-comments"></i>
+        <i class="fas fa-comments" aria-hidden="true"></i>
       </button>
-
-      <!-- Janela do Chatbot (estática, pode ser exibida ou não) -->
-      <!-- <div class="fixed bottom-24 right-6 w-96 h-[60vh] bg-white rounded-2xl shadow-2xl flex flex-col z-50 overflow-hidden animate-fade-in-up">
-          <div class="p-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
-              <h3 class="font-bold text-lg">Assistente Virtual</h3>
-              <p class="text-sm opacity-90">Dados sobre gênero em Parauapebas</p>
-          </div>
-          <div class="flex-1 p-4 overflow-y-auto bg-gray-50">
-              <div class="flex my-2 justify-start">
-                  <div class="px-4 py-2 rounded-2xl max-w-xs bg-gray-200 text-gray-800 rounded-bl-none">Olá! Sou a assistente virtual do Observatório de Gênero. Como posso ajudar com dados sobre Parauapebas?</div>
-              </div>
-          </div>
-          <div class="p-4 border-t border-gray-200">
-              <div class="relative">
-                  <input type="text" placeholder="Digite sua pergunta..." class="w-full pl-4 pr-12 py-2 border border-gray-300 rounded-full" disabled/>
-                  <button type="submit" disabled class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-gray-400 text-white rounded-full flex items-center justify-center">
-                     <i class="fas fa-paper-plane"></i>
-                  </button>
-              </div>
-          </div>
-      </div> -->
 
     </div>
   </div>
