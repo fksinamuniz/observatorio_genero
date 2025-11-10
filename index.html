@@ -74,10 +74,13 @@
 
 <body class="bg-[#f0f5ff]">
   <div id="root">
-    <div class="flex h-screen bg-[#f0f5ff]">
-      <!-- Sidebar Estático -->
+    <div class="relative min-h-screen md:flex">
+      <!-- Backdrop para menu mobile -->
+      <div id="sidebar-backdrop" class="fixed inset-0 bg-black/50 z-20 hidden md:hidden cursor-pointer"></div>
+
+      <!-- Sidebar -->
       <aside id="sidebar"
-        class="w-64 h-screen bg-gradient-to-b from-violet-300 to-purple-400 text-white fixed left-0 top-0 z-20 flex flex-col shadow-2xl">
+        class="w-64 h-screen bg-gradient-to-b from-violet-300 to-purple-400 text-white fixed left-0 top-0 flex flex-col shadow-2xl transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-30">
         <div class="p-5 flex items-center gap-4">
           <div
             class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-violet-600 text-2xl shadow-lg">
@@ -154,34 +157,40 @@
         </div>
       </aside>
 
-      <div class="flex-1 flex flex-col overflow-hidden">
-        <header class="h-16 bg-white shadow-sm flex items-center justify-between px-6 ml-64 flex-shrink-0 z-10">
-          <div class="relative max-w-xs w-full">
-            <label for="search-input" class="sr-only">Pesquisar</label>
-            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" aria-hidden="true"></i>
-            <input type="text" id="search-input" placeholder="Pesquisar..."
-              class="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-shadow" />
-          </div>
-          <div class="flex items-center gap-4">
-            <button aria-label="Notificações" class="relative w-10 h-10 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors">
-              <i class="fas fa-bell" aria-hidden="true"></i>
-              <div
-                class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center border-2 border-white">
-                3</div>
-            </button>
-            <button aria-label="Mensagens" class="w-10 h-10 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors">
-              <i class="fas fa-envelope" aria-hidden="true"></i>
-            </button>
-            <button aria-label="Mudar tema" class="w-10 h-10 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors">
-              <i class="fas fa-moon" aria-hidden="true"></i>
-            </button>
-          </div>
+      <div class="flex-1 flex flex-col overflow-hidden md:ml-64">
+        <header class="h-16 bg-white shadow-sm flex items-center justify-between px-4 md:px-6 flex-shrink-0 z-10">
+            <div class="flex items-center">
+                <button id="menu-toggle" aria-label="Abrir menu" class="md:hidden mr-4 text-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded">
+                  <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div class="relative max-w-xs w-full hidden sm:block">
+                    <label for="search-input" class="sr-only">Pesquisar</label>
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" aria-hidden="true"></i>
+                    <input type="text" id="search-input" placeholder="Pesquisar..."
+                    class="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-shadow" />
+                </div>
+            </div>
+            <div class="flex items-center gap-2 md:gap-4">
+                <button aria-label="Notificações" class="relative w-10 h-10 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors">
+                <i class="fas fa-bell" aria-hidden="true"></i>
+                <div
+                    class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center border-2 border-white">
+                    3</div>
+                </button>
+                <button aria-label="Mensagens" class="w-10 h-10 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors hidden sm:inline-flex">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+                </button>
+                <button aria-label="Mudar tema" class="w-10 h-10 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors">
+                <i class="fas fa-moon" aria-hidden="true"></i>
+                </button>
+            </div>
         </header>
 
+
         <main class="flex-1 overflow-x-hidden overflow-y-auto">
-          <section id="painel" class="view-section p-4 md:p-6 ml-64" aria-labelledby="painel-titulo">
+          <section id="painel" class="view-section p-4 md:p-6" aria-labelledby="painel-titulo">
             <div class="mb-6">
-              <h1 id="painel-titulo" class="text-3xl font-bold text-gray-800">Painel de Controle</h1>
+              <h1 id="painel-titulo" class="text-2xl md:text-3xl font-bold text-gray-800">Painel de Controle</h1>
               <p class="text-gray-600 mt-1">Visão geral dos indicadores de gênero em Parauapebas.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
@@ -301,7 +310,7 @@
                 </div>
               </div>
 
-              <aside>
+              <aside class="space-y-6">
                  <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
                     <div class="p-5 border-b border-gray-200/80 bg-white/50">
                         <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3">
@@ -316,7 +325,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative mt-6">
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
                     <div class="p-5 border-b border-gray-200/80 bg-white/50">
                         <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3">
                             <i class="fas fa-link text-blue-500" aria-hidden="true"></i>
@@ -336,9 +345,9 @@
           </section>
 
           <!-- Seções de Conteúdo Adicionais -->
-          <section id="violencia" class="view-section p-4 md:p-6 ml-64" aria-labelledby="violencia-titulo">
+          <section id="violencia" class="view-section p-4 md:p-6" aria-labelledby="violencia-titulo">
             <div class="mb-6">
-                <h1 id="violencia-titulo" class="text-3xl font-bold text-gray-800">Violência de Gênero</h1>
+                <h1 id="violencia-titulo" class="text-2xl md:text-3xl font-bold text-gray-800">Violência de Gênero</h1>
                 <p class="text-gray-600 mt-1">Análise detalhada sobre os casos de violência contra a mulher em Parauapebas.</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -410,9 +419,9 @@
             </div>
           </section>
 
-          <section id="denuncias" class="view-section p-4 md:p-6 ml-64" aria-labelledby="denuncias-titulo">
+          <section id="denuncias" class="view-section p-4 md:p-6" aria-labelledby="denuncias-titulo">
             <div class="mb-6">
-                <h1 id="denuncias-titulo" class="text-3xl font-bold text-gray-800">Registro de Denúncias</h1>
+                <h1 id="denuncias-titulo" class="text-2xl md:text-3xl font-bold text-gray-800">Registro de Denúncias</h1>
                 <p class="text-gray-600 mt-1">Dados detalhados sobre as denúncias de violência registradas.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
@@ -444,9 +453,9 @@
             </div>
           </section>
 
-          <section id="medidas-de-protecao" class="view-section p-4 md:p-6 ml-64" aria-labelledby="medidas-titulo">
+          <section id="medidas-de-protecao" class="view-section p-4 md:p-6" aria-labelledby="medidas-titulo">
              <div class="mb-6">
-                <h1 id="medidas-titulo" class="text-3xl font-bold text-gray-800">Acompanhamento de Medidas Protetivas</h1>
+                <h1 id="medidas-titulo" class="text-2xl md:text-3xl font-bold text-gray-800">Acompanhamento de Medidas Protetivas</h1>
                 <p class="text-gray-600 mt-1">Informações sobre as medidas protetivas de urgência aplicadas.</p>
             </div>
              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
@@ -469,9 +478,9 @@
             </div>
           </section>
 
-          <section id="estatisticas" class="view-section p-4 md:p-6 ml-64" aria-labelledby="estatisticas-titulo">
+          <section id="estatisticas" class="view-section p-4 md:p-6" aria-labelledby="estatisticas-titulo">
             <div class="mb-6">
-                <h1 id="estatisticas-titulo" class="text-3xl font-bold text-gray-800">Estatísticas Detalhadas</h1>
+                <h1 id="estatisticas-titulo" class="text-2xl md:text-3xl font-bold text-gray-800">Estatísticas Detalhadas</h1>
                 <p class="text-gray-600 mt-1">Análise aprofundada do perfil das vítimas e agressores.</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -511,19 +520,19 @@
             </div>
           </section>
 
-          <section id="trabalho-e-renda" class="view-section p-4 md:p-6 ml-64" aria-labelledby="trabalho-titulo">
+          <section id="trabalho-e-renda" class="view-section p-4 md:p-6" aria-labelledby="trabalho-titulo">
              <div class="bg-white rounded-xl shadow-lg p-6"><h1 id="trabalho-titulo" class="text-2xl font-bold text-gray-800">Trabalho e Renda</h1><p class="text-gray-600 mt-2">Dados e análises sobre trabalho e renda serão exibidos aqui. Esta seção está em construção.</p></div>
           </section>
           
-          <section id="educacao" class="view-section p-4 md:p-6 ml-64" aria-labelledby="educacao-titulo">
+          <section id="educacao" class="view-section p-4 md:p-6" aria-labelledby="educacao-titulo">
             <div class="bg-white rounded-xl shadow-lg p-6"><h1 id="educacao-titulo" class="text-2xl font-bold text-gray-800">Educação</h1><p class="text-gray-600 mt-2">Dados e análises sobre educação serão exibidos aqui. Esta seção está em construção.</p></div>
           </section>
 
-          <section id="participacao-politica" class="view-section p-4 md:p-6 ml-64" aria-labelledby="politica-titulo">
+          <section id="participacao-politica" class="view-section p-4 md:p-6" aria-labelledby="politica-titulo">
             <div class="bg-white rounded-xl shadow-lg p-6"><h1 id="politica-titulo" class="text-2xl font-bold text-gray-800">Participação Política</h1><p class="text-gray-600 mt-2">Dados e análises sobre participação política serão exibidos aqui. Esta seção está em construção.</p></div>
           </section>
 
-          <section id="analise-de-cenarios" class="view-section p-4 md:p-6 ml-64 h-full overflow-y-auto" aria-labelledby="analise-titulo">
+          <section id="analise-de-cenarios" class="view-section p-4 md:p-6 h-full overflow-y-auto" aria-labelledby="analise-titulo">
             <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative grid grid-cols-1 lg:grid-cols-3 gap-0 min-h-[calc(100vh-5rem)]">
                 <div class="lg:col-span-2 p-6 flex flex-col">
                     <div class="aspect-video w-full rounded-xl bg-gray-200 mb-6 relative overflow-hidden shadow-lg">
@@ -568,12 +577,49 @@
 
       <button
         aria-label="Abrir assistente virtual"
-        class="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-full shadow-2xl flex items-center justify-center text-3xl z-50 transform hover:scale-110 transition-transform">
+        class="fixed bottom-4 right-4 md:bottom-6 md:right-6 w-16 h-16 bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-full shadow-2xl flex items-center justify-center text-3xl z-10 transform hover:scale-110 transition-transform">
         <i class="fas fa-comments" aria-hidden="true"></i>
       </button>
-
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menu-toggle');
+      const sidebar = document.getElementById('sidebar');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      
+      const closeMenu = () => {
+        sidebar.classList.add('-translate-x-full');
+        backdrop.classList.add('hidden');
+      };
+      
+      const openMenu = () => {
+        sidebar.classList.remove('-translate-x-full');
+        backdrop.classList.remove('hidden');
+      };
+
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (sidebar.classList.contains('-translate-x-full')) {
+            openMenu();
+        } else {
+            closeMenu();
+        }
+      });
+
+      backdrop.addEventListener('click', closeMenu);
+      
+      sidebar.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          // Apenas fecha o menu se estiver em modo mobile (o backdrop estiver visível)
+          if (!backdrop.classList.contains('hidden')) {
+            closeMenu();
+          }
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
