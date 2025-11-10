@@ -1,625 +1,1284 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236d28d9'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2.5-3.5h5v-2h-5v2zm0-4h5v-2h-5v2zm0-4h5v-2h-5v2z'/%3E%3C/svg%3E" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Observatório de Gênero - Parauapebas</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style>
-    /* Estilos customizados e simulação de roteamento */
-    @keyframes fade-in {
-      from {
-        opacity: 0;
-        max-height: 0;
-      }
-
-      to {
-        opacity: 1;
-        max-height: 200px;
-      }
-    }
-
-    .animate-fade-in {
-      animation: fade-in 0.3s ease-out forwards;
-      overflow: hidden;
-    }
-
-    @keyframes fade-in-up {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-fade-in-up {
-      animation: fade-in-up 0.3s ease-out forwards;
-    }
-
-    /* Lógica de Roteamento com CSS :target */
-    .view-section {
-      display: none;
-    }
-
-    /* O painel é a view padrão */
-    #painel {
-      display: block;
-    }
-    
-    /* Quando um link ancora em uma view, ela é exibida */
-    .view-section:target {
-      display: block;
-    }
-    
-    /* E o painel padrão é escondido */
-    .view-section:target ~ #painel {
-      display: none;
-    }
-
-    /* Estilo para deixar o texto da sidebar mais vívido */
-    #sidebar h2, #sidebar nav span {
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    }
-  </style>
-</head>
-
-<body class="bg-[#f0f5ff]">
-  <div id="root">
-    <div class="relative min-h-screen md:flex">
-      <!-- Backdrop para menu mobile -->
-      <div id="sidebar-backdrop" class="fixed inset-0 bg-black/50 z-20 hidden md:hidden cursor-pointer"></div>
-
-      <!-- Sidebar -->
-      <aside id="sidebar"
-        class="w-64 h-screen bg-gradient-to-b from-violet-300 to-purple-400 text-white fixed left-0 top-0 flex flex-col shadow-2xl transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-30">
-        <div class="p-5 flex items-center gap-4">
-          <div
-            class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-violet-600 text-2xl shadow-lg">
-            <i class="fas fa-scale-balanced" aria-hidden="true"></i>
-          </div>
-          <h2 class="font-extrabold text-xl leading-tight">Observatório de Gênero</h2>
-        </div>
-        <nav class="flex-1 px-3 py-2 space-y-1 overflow-y-auto">
-          <a href="#painel"
-            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-300 bg-white/20 text-white font-bold hover:bg-white/30">
-            <div class="flex items-center gap-3">
-              <i class="fas fa-chart-pie w-5 text-center text-lg" aria-hidden="true"></i>
-              <span>Painel</span>
-            </div>
-          </a>
-          <div>
-            <a href="#violencia"
-              class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-300 text-white/90 hover:bg-white/15 hover:text-white font-medium">
-              <div class="flex items-center gap-3">
-                <i class="fas fa-house-chimney-crack w-5 text-center text-lg" aria-hidden="true"></i>
-                <span>Violência</span>
-              </div>
-              <i class="fas fa-chevron-down text-xs transition-transform duration-300 rotate-180" aria-hidden="true"></i>
-            </a>
-            <div class="pl-7 pt-1 pb-2 space-y-1 animate-fade-in">
-              <a href="#denuncias"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-300 text-white/80 hover:bg-white/10 hover:text-white">
-                <i class="fas fa-circle fa-xs w-5 text-center" aria-hidden="true"></i>
-                <span>Denúncias</span>
-              </a>
-              <a href="#medidas-de-protecao"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-300 text-white/80 hover:bg-white/10 hover:text-white">
-                <i class="fas fa-circle fa-xs w-5 text-center" aria-hidden="true"></i>
-                <span>Medidas de Proteção</span>
-              </a>
-              <a href="#estatisticas"
-                class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-300 text-white/80 hover:bg-white/10 hover:text-white">
-                <i class="fas fa-circle fa-xs w-5 text-center" aria-hidden="true"></i>
-                <span>Estatísticas</span>
-              </a>
-            </div>
-          </div>
-          <a href="#trabalho-e-renda"
-            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-300 text-white/90 hover:bg-white/15 hover:text-white font-medium">
-            <div class="flex items-center gap-3">
-              <i class="fas fa-briefcase w-5 text-center text-lg" aria-hidden="true"></i>
-              <span>Trabalho e Renda</span>
-            </div>
-          </a>
-          <a href="#educacao"
-            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-300 text-white/90 hover:bg-white/15 hover:text-white font-medium">
-            <div class="flex items-center gap-3">
-              <i class="fas fa-graduation-cap w-5 text-center text-lg" aria-hidden="true"></i>
-              <span>Educação</span>
-            </div>
-          </a>
-          <a href="#participacao-politica"
-            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-300 text-white/90 hover:bg-white/15 hover:text-white font-medium">
-            <div class="flex items-center gap-3">
-              <i class="fas fa-gavel w-5 text-center text-lg" aria-hidden="true"></i>
-              <span>Participação Política</span>
-            </div>
-          </a>
-          <a href="#analise-de-cenarios"
-            class="flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg transition-all duration-300 text-white/90 hover:bg-white/15 hover:text-white font-medium">
-            <div class="flex items-center gap-3">
-              <i class="fas fa-lightbulb w-5 text-center text-lg" aria-hidden="true"></i>
-              <span>Análise de Cenários</span>
-            </div>
-          </a>
-        </nav>
-        <div class="p-4 border-t border-purple-900/20">
-          <div class="text-xs text-white/80">Município de Parauapebas</div>
-        </div>
-      </aside>
-
-      <div class="flex-1 flex flex-col overflow-hidden md:ml-64">
-        <header class="h-16 bg-white shadow-sm flex items-center justify-between px-4 md:px-6 flex-shrink-0 z-10">
-            <div class="flex items-center">
-                <button id="menu-toggle" aria-label="Abrir menu" class="md:hidden mr-4 text-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded">
-                  <i class="fas fa-bars text-xl"></i>
-                </button>
-                <div class="relative max-w-xs w-full hidden sm:block">
-                    <label for="search-input" class="sr-only">Pesquisar</label>
-                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" aria-hidden="true"></i>
-                    <input type="text" id="search-input" placeholder="Pesquisar..."
-                    class="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-shadow" />
-                </div>
-            </div>
-            <div class="flex items-center gap-2 md:gap-4">
-                <button aria-label="Notificações" class="relative w-10 h-10 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors">
-                <i class="fas fa-bell" aria-hidden="true"></i>
-                <div
-                    class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center border-2 border-white">
-                    3</div>
-                </button>
-                <button aria-label="Mensagens" class="w-10 h-10 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors hidden sm:inline-flex">
-                <i class="fas fa-envelope" aria-hidden="true"></i>
-                </button>
-                <button aria-label="Mudar tema" class="w-10 h-10 bg-gray-100 rounded-full text-gray-600 hover:bg-gray-200 transition-colors">
-                <i class="fas fa-moon" aria-hidden="true"></i>
-                </button>
-            </div>
-        </header>
-
-
-        <main class="flex-1 overflow-x-hidden overflow-y-auto">
-          <section id="painel" class="view-section p-4 md:p-6" aria-labelledby="painel-titulo">
-            <div class="mb-6">
-              <h1 id="painel-titulo" class="text-2xl md:text-3xl font-bold text-gray-800">Painel de Controle</h1>
-              <p class="text-gray-600 mt-1">Visão geral dos indicadores de gênero em Parauapebas.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-              <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-red-500 to-rose-400"></div>
-                <div class="p-5 flex flex-col items-center text-center">
-                  <i class="fas fa-house-chimney-crack text-4xl text-red-500 mb-3" aria-hidden="true"></i>
-                  <h4 class="text-lg font-semibold text-gray-700">Violência</h4>
-                  <p class="text-2xl font-bold text-gray-800 mt-1">1.234</p>
-                  <p class="text-sm text-gray-500">denúncias em 2023</p>
-                </div>
-              </div>
-              <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 to-cyan-400"></div>
-                <div class="p-5 flex flex-col items-center text-center">
-                  <i class="fas fa-briefcase text-4xl text-blue-500 mb-3" aria-hidden="true"></i>
-                  <h4 class="text-lg font-semibold text-gray-700">Trabalho e Renda</h4>
-                  <p class="text-2xl font-bold text-gray-800 mt-1">R$ 2.150</p>
-                  <p class="text-sm text-gray-500">renda média feminina</p>
-                </div>
-              </div>
-              <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-green-500 to-emerald-400"></div>
-                <div class="p-5 flex flex-col items-center text-center">
-                  <i class="fas fa-graduation-cap text-4xl text-green-500 mb-3" aria-hidden="true"></i>
-                  <h4 class="text-lg font-semibold text-gray-700">Educação</h4>
-                  <p class="text-2xl font-bold text-gray-800 mt-1">85%</p>
-                  <p class="text-sm text-gray-500">de alfabetização</p>
-                </div>
-              </div>
-              <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-yellow-500 to-amber-400"></div>
-                <div class="p-5 flex flex-col items-center text-center">
-                  <i class="fas fa-gavel text-4xl text-yellow-500 mb-3" aria-hidden="true"></i>
-                  <h4 class="text-lg font-semibold text-gray-700">Participação Política</h4>
-                  <p class="text-2xl font-bold text-gray-800 mt-1">30%</p>
-                  <p class="text-sm text-gray-500">de mulheres em cargos eletivos</p>
-                </div>
-              </div>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div class="lg:col-span-2 space-y-6">
-                 <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                    <div class="p-5 border-b border-gray-200/80 bg-white/50">
-                        <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3">
-                            <i class="fas fa-chart-line text-blue-500" aria-hidden="true"></i>
-                            <span>Evolução da Violência Doméstica</span>
-                        </h3>
-                    </div>
-                    <div class="p-5">
-                         <div class="flex justify-center gap-2 mb-4">
-                            <button class="px-3 py-1 text-sm rounded-full transition-colors bg-indigo-500 text-white">2021</button>
-                            <button class="px-3 py-1 text-sm rounded-full transition-colors bg-indigo-500 text-white">2022</button>
-                            <button class="px-3 py-1 text-sm rounded-full transition-colors bg-indigo-500 text-white">2023</button>
-                        </div>
-                        <div class="h-64">
-                            <svg width="100%" height="100%" viewBox="0 0 500 256" aria-label="Gráfico de barras mostrando a evolução da violência doméstica de 2021 a 2023.">
-                                <g class="recharts-layer recharts-cartesian-grid">
-                                    <line stroke="#e5e7eb" stroke-dasharray="3 3" x1="50" y1="20" x2="480" y2="20"></line>
-                                    <line stroke="#e5e7eb" stroke-dasharray="3 3" x1="50" y1="73" x2="480" y2="73"></line>
-                                    <line stroke="#e5e7eb" stroke-dasharray="3 3" x1="50" y1="126" x2="480" y2="126"></line>
-                                    <line stroke="#e5e7eb" stroke-dasharray="3 3" x1="50" y1="179" x2="480" y2="179"></line>
-                                    <line stroke="#e5e7eb" stroke-dasharray="3 3" x1="50" y1="232" x2="480" y2="232"></line>
-                                </g>
-                                <g class="recharts-layer recharts-xAxis xAxis">
-                                    <text x="143" y="247" text-anchor="middle" fill="#6b7280">2021</text>
-                                    <text x="273" y="247" text-anchor="middle" fill="#6b7280">2022</text>
-                                    <text x="403" y="247" text-anchor="middle" fill="#6b7280">2023</text>
-                                </g>
-                                <g class="recharts-layer recharts-yAxis yAxis">
-                                    <text x="40" y="232" text-anchor="end" fill="#6b7280">0</text>
-                                    <text x="40" y="179" text-anchor="end" fill="#6b7280">400</text>
-                                    <text x="40" y="126" text-anchor="end" fill="#6b7280">800</text>
-                                    <text x="40" y="73" text-anchor="end" fill="#6b7280">1200</text>
-                                    <text x="40" y="20" text-anchor="end" fill="#6b7280">1600</text>
-                                </g>
-                                <g class="recharts-layer recharts-bar">
-                                    <rect x="118" y="77" width="50" height="155" fill="#8b5cf6" rx="4" ry="4"></rect>
-                                    <rect x="248" y="44" width="50" height="188" fill="#8b5cf6" rx="4" ry="4"></rect>
-                                    <rect x="378" y="29" width="50" height="203" fill="#8b5cf6" rx="4" ry="4"></rect>
-                                </g>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                 <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                     <div class="p-5 border-b border-gray-200/80 bg-white/50">
-                        <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3">
-                            <i class="fas fa-map-marker-alt text-blue-500" aria-hidden="true"></i>
-                            <span>Distribuição por Setor</span>
-                        </h3>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex justify-center gap-2 mb-4 flex-wrap">
-                            <button class="px-3 py-1 text-sm rounded-full transition-colors bg-purple-500 text-white">Urbano</button>
-                            <button class="px-3 py-1 text-sm rounded-full transition-colors bg-purple-500 text-white">Rural</button>
-                            <button class="px-3 py-1 text-sm rounded-full transition-colors bg-purple-500 text-white">Indígena</button>
-                            <button class="px-3 py-1 text-sm rounded-full transition-colors bg-purple-500 text-white">Outros</button>
-                        </div>
-                         <div class="h-72">
-                            <svg width="100%" height="100%" viewBox="0 0 500 288" aria-label="Gráfico de pizza mostrando a distribuição de casos por setor.">
-                                <g transform="translate(250, 120)">
-                                    <path d="M8.57015485453229e-15,-100A100,100,0,1,1,-95.10565162951535,30.901699437494745L0,0Z" fill="#6366f1" stroke="#fff"></path>
-                                    <path d="M-95.10565162951535,30.901699437494745A100,100,0,0,1,-80.90169943749476,-58.7785252292473L0,0Z" fill="#8b5cf6" stroke="#fff"></path>
-                                    <path d="M-80.90169943749476,-58.7785252292473A100,100,0,0,1,-5.474498305609458e-14,-100L0,0Z" fill="#a78bfa" stroke="#fff"></path>
-                                    <path d="M-5.474498305609458e-14,-100A100,100,0,0,1,8.57015485453229e-15,-100L0,0Z" fill="#ddd6fe" stroke="#fff"></path>
-                                </g>
-                                <g transform="translate(50, 260)">
-                                    <rect width="10" height="10" y="0" fill="#6366f1"></rect><text x="15" y="10" fill="#6b7280">Urbano</text>
-                                    <rect width="10" height="10" y="0" x="80" fill="#8b5cf6"></rect><text x="95" y="10" fill="#6b7280">Rural</text>
-                                    <rect width="10" height="10" y="0" x="150" fill="#a78bfa"></rect><text x="165" y="10" fill="#6b7280">Indígena</text>
-                                    <rect width="10" height="10" y="0" x="240" fill="#ddd6fe"></rect><text x="255" y="10" fill="#6b7280">Outros</text>
-                                </g>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-              </div>
-
-              <aside class="space-y-6">
-                 <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                    <div class="p-5 border-b border-gray-200/80 bg-white/50">
-                        <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3">
-                            <i class="fas fa-lightbulb text-blue-500" aria-hidden="true"></i>
-                            <span>Análise de Cenários</span>
-                        </h3>
-                    </div>
-                    <div class="p-5">
-                        <p class="text-gray-600 mb-4">Explore cenários hipotéticos e o impacto de diferentes políticas públicas para a igualdade de gênero.</p>
-                         <a href="#analise-de-cenarios" class="w-full block text-center bg-indigo-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-600 transition-colors">
-                            Iniciar Simulação
-                        </a>
-                    </div>
-                </div>
-                <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                    <div class="p-5 border-b border-gray-200/80 bg-white/50">
-                        <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3">
-                            <i class="fas fa-link text-blue-500" aria-hidden="true"></i>
-                            <span>Links Rápidos</span>
-                        </h3>
-                    </div>
-                    <div class="p-5">
-                        <ul class="space-y-2 text-blue-600">
-                            <li><a href="#denuncias" class="hover:underline">Ver dados de denúncias</a></li>
-                            <li><a href="#estatisticas" class="hover:underline">Acessar estatísticas detalhadas</a></li>
-                            <li><a href="#educacao" class="hover:underline">Indicadores de Educação</a></li>
-                        </ul>
-                    </div>
-                </div>
-              </aside>
-            </div>
-          </section>
-
-          <!-- Seções de Conteúdo Adicionais -->
-          <section id="violencia" class="view-section p-4 md:p-6" aria-labelledby="violencia-titulo">
-            <div class="mb-6">
-                <h1 id="violencia-titulo" class="text-2xl md:text-3xl font-bold text-gray-800">Violência de Gênero</h1>
-                <p class="text-gray-600 mt-1">Análise detalhada sobre os casos de violência contra a mulher em Parauapebas.</p>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div class="lg:col-span-2">
-                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                        <div class="p-5 border-b border-gray-200/80 bg-white/50">
-                            <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-chart-line text-blue-500" aria-hidden="true"></i><span>Evolução Anual das Denúncias</span></h3>
-                        </div>
-                        <div class="p-5">
-                            <div class="h-80">
-                                <svg width="100%" height="100%" viewBox="0 0 500 320" aria-label="Gráfico de barras mostrando a evolução anual das denúncias de 2020 a 2023.">
-                                    <g class="recharts-layer recharts-cartesian-grid"><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="5" x2="60" y2="275"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="162.5" y1="5" x2="162.5" y2="275"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="265" y1="5" x2="265" y2="275"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="367.5" y1="5" x2="367.5" y2="275"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="470" y1="5" x2="470" y2="275"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="275" x2="470" y2="275"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="207.5" x2="470" y2="207.5"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="140" x2="470" y2="140"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="72.5" x2="470" y2="72.5"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="5" x2="470" y2="5"></line></g>
-                                    <g class="recharts-layer recharts-xAxis xAxis"><text x="111.25" y="290" text-anchor="middle" fill="#6b7280">2020</text><text x="213.75" y="290" text-anchor="middle" fill="#6b7280">2021</text><text x="316.25" y="290" text-anchor="middle" fill="#6b7280">2022</text><text x="418.75" y="290" text-anchor="middle" fill="#6b7280">2023</text></g>
-                                    <g class="recharts-layer recharts-yAxis yAxis"><text x="50" y="275" text-anchor="end" fill="#6b7280">0</text><text x="50" y="207.5" text-anchor="end" fill="#6b7280">400</text><text x="50" y="140" text-anchor="end" fill="#6b7280">800</text><text x="50" y="72.5" text-anchor="end" fill="#6b7280">1200</text></g>
-                                    <g class="recharts-layer recharts-bar"><rect x="90.625" y="125.185" width="41.25" height="149.815" fill="#8b5cf6" rx="4" ry="4"></rect><rect x="193.125" y="78.148" width="41.25" height="196.852" fill="#8b5cf6" rx="4" ry="4"></rect><rect x="295.625" y="44.074" width="41.25" height="230.926" fill="#8b5cf6" rx="4" ry="4"></rect><rect x="398.125" y="23.704" width="41.25" height="251.296" fill="#8b5cf6" rx="4" ry="4"></rect></g>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:col-span-1">
-                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                        <div class="p-5 border-b border-gray-200/80 bg-white/50">
-                            <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-chart-pie text-blue-500" aria-hidden="true"></i><span>Tipos de Violência (2023)</span></h3>
-                        </div>
-                        <div class="p-5">
-                            <div class="h-80">
-                                <svg width="100%" height="100%" viewBox="0 0 500 320" aria-label="Gráfico de pizza mostrando os tipos de violência em 2023.">
-                                    <g transform="translate(250, 140)">
-                                        <path d="M5.511311029285261e-15,-90A90,90,0,1,1,-80.90169943749474,40.00000000000001L-53.93446629166316,26.66666666666667Z" fill="#8b5cf6" stroke="#fff"></path>
-                                        <path d="M-80.90169943749474,40.00000000000001A90,90,0,0,1,2.835921034237172e-14,-90L1.8906140228247814e-14,-60Z" fill="#a78bfa" stroke="#fff"></path>
-                                        <path d="M2.835921034237172e-14,-90A90,90,0,0,1,52.92835008320493,-72.82203131336987L35.28556672213662,-48.54802087557991Z" fill="#c4b5fd" stroke="#fff"></path>
-                                        <path d="M52.92835008320493,-72.82203131336987A90,90,0,0,1,85.6133038612143,-27.81086580970836L57.0755359074762,-18.54057720647224Z" fill="#ddd6fe" stroke="#fff"></path>
-                                        <path d="M85.6133038612143,-27.81086580970836A90,90,0,0,1,5.511311029285261e-15,-90L3.6742073528568404e-15,-60Z" fill="#ede9fe" stroke="#fff"></path>
-                                    </g>
-                                    <g transform="translate(50, 290)">
-                                        <rect width="10" height="10" fill="#8b5cf6"></rect><text x="15" y="10" fill="#6b7280">Física</text>
-                                        <rect x="70" width="10" height="10" fill="#a78bfa"></rect><text x="85" y="10" fill="#6b7280">Psicológica</text>
-                                        <rect x="180" width="10" height="10" fill="#c4b5fd"></rect><text x="195" y="10" fill="#6b7280">Moral</text>
-                                    </g>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-6">
-                <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                    <div class="p-5 border-b border-gray-200/80 bg-white/50">
-                        <h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-folder-open text-blue-500" aria-hidden="true"></i><span>Explorar Seções</span></h3>
-                    </div>
-                    <div class="p-5">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <a href="#denuncias" class="block bg-purple-100 text-purple-800 p-4 rounded-lg hover:bg-purple-200 transition-colors shadow-sm hover:shadow-md">
-                                <h4 class="font-bold"><i class="fas fa-bullhorn mr-2" aria-hidden="true"></i>Denúncias</h4>
-                                <p class="text-sm mt-1">Veja dados detalhados sobre as denúncias registradas.</p>
-                            </a>
-                            <a href="#medidas-de-protecao" class="block bg-purple-100 text-purple-800 p-4 rounded-lg hover:bg-purple-200 transition-colors shadow-sm hover:shadow-md">
-                                <h4 class="font-bold"><i class="fas fa-shield-halved mr-2" aria-hidden="true"></i>Medidas de Proteção</h4>
-                                <p class="text-sm mt-1">Informações sobre as medidas protetivas aplicadas.</p>
-                            </a>
-                            <a href="#estatisticas" class="block bg-purple-100 text-purple-800 p-4 rounded-lg hover:bg-purple-200 transition-colors shadow-sm hover:shadow-md">
-                                <h4 class="font-bold"><i class="fas fa-database mr-2" aria-hidden="true"></i>Estatísticas</h4>
-                                <p class="text-sm mt-1">Consulte estatísticas e relatórios completos.</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </section>
-
-          <section id="denuncias" class="view-section p-4 md:p-6" aria-labelledby="denuncias-titulo">
-            <div class="mb-6">
-                <h1 id="denuncias-titulo" class="text-2xl md:text-3xl font-bold text-gray-800">Registro de Denúncias</h1>
-                <p class="text-gray-600 mt-1">Dados detalhados sobre as denúncias de violência registradas.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                 <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative"><div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-red-500 to-rose-400"></div><div class="p-5"><h4 class="text-gray-500 font-medium">Total de Denúncias (2023)</h4><p class="text-3xl font-bold text-gray-800 mt-1">1.234</p></div></div>
-                 <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative"><div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-yellow-500 to-amber-400"></div><div class="p-5"><h4 class="text-gray-500 font-medium">Média Diária</h4><p class="text-3xl font-bold text-gray-800 mt-1">3.4</p></div></div>
-                 <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative"><div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 to-cyan-400"></div><div class="p-5"><h4 class="text-gray-500 font-medium">Bairro com Maior Incidência</h4><p class="text-3xl font-bold text-gray-800 mt-1">Cidade Nova</p></div></div>
-            </div>
-            <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                <div class="p-5 border-b border-gray-200/80 bg-white/50"><h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-list-alt text-blue-500" aria-hidden="true"></i><span>Últimas Denúncias Registradas</span></h3></div>
-                <div class="p-0">
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left text-gray-500">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3">ID</th><th scope="col" class="px-6 py-3">Data</th><th scope="col" class="px-6 py-3">Bairro</th><th scope="col" class="px-6 py-3">Tipo de Violência</th><th scope="col" class="px-6 py-3">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="bg-white border-b hover:bg-gray-50"><td class="px-6 py-4 font-medium text-gray-900">DP001</td><td class="px-6 py-4">2023-11-15</td><td class="px-6 py-4">Cidade Nova</td><td class="px-6 py-4">Física</td><td class="px-6 py-4"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Em investigação</span></td></tr>
-                                <tr class="bg-white border-b hover:bg-gray-50"><td class="px-6 py-4 font-medium text-gray-900">DP002</td><td class="px-6 py-4">2023-11-14</td><td class="px-6 py-4">Rio Verde</td><td class="px-6 py-4">Psicológica</td><td class="px-6 py-4"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Concluído</span></td></tr>
-                                <tr class="bg-white border-b hover:bg-gray-50"><td class="px-6 py-4 font-medium text-gray-900">DP003</td><td class="px-6 py-4">2023-11-14</td><td class="px-6 py-4">Betânia</td><td class="px-6 py-4">Moral</td><td class="px-6 py-4"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Em investigação</span></td></tr>
-                                <tr class="bg-white border-b hover:bg-gray-50"><td class="px-6 py-4 font-medium text-gray-900">DP004</td><td class="px-6 py-4">2023-11-12</td><td class="px-6 py-4">Cidade Nova</td><td class="px-6 py-4">Patrimonial</td><td class="px-6 py-4"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">Arquivado</span></td></tr>
-                                <tr class="bg-white border-b hover:bg-gray-50"><td class="px-6 py-4 font-medium text-gray-900">DP005</td><td class="px-6 py-4">2023-11-10</td><td class="px-6 py-4">Liberdade</td><td class="px-6 py-4">Física</td><td class="px-6 py-4"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Em investigação</span></td></tr>
-                                <tr class="bg-white border-b hover:bg-gray-50"><td class="px-6 py-4 font-medium text-gray-900">DP006</td><td class="px-6 py-4">2023-11-09</td><td class="px-6 py-4">Rio Verde</td><td class="px-6 py-4">Sexual</td><td class="px-6 py-4"><span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Em investigação</span></td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-          </section>
-
-          <section id="medidas-de-protecao" class="view-section p-4 md:p-6" aria-labelledby="medidas-titulo">
-             <div class="mb-6">
-                <h1 id="medidas-titulo" class="text-2xl md:text-3xl font-bold text-gray-800">Acompanhamento de Medidas Protetivas</h1>
-                <p class="text-gray-600 mt-1">Informações sobre as medidas protetivas de urgência aplicadas.</p>
-            </div>
-             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                 <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative"><div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 to-cyan-400"></div><div class="p-5"><h4 class="text-gray-500 font-medium">Medidas Solicitadas (2023)</h4><p class="text-3xl font-bold text-gray-800 mt-1">987</p></div></div>
-                 <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative"><div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-green-500 to-emerald-400"></div><div class="p-5"><h4 class="text-gray-500 font-medium">Medidas Concedidas</h4><p class="text-3xl font-bold text-gray-800 mt-1">892</p></div></div>
-                 <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative"><div class="p-5"><h4 class="text-gray-500 font-medium">Taxa de Atendimento</h4><p class="text-3xl font-bold text-gray-800 mt-1">90.3%</p></div></div>
-            </div>
-            <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                <div class="p-5 border-b border-gray-200/80 bg-white/50"><h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-chart-bar text-blue-500" aria-hidden="true"></i><span>Tipos de Medidas Concedidas</span></h3></div>
-                <div class="p-5">
-                    <div class="h-96">
-                        <svg width="100%" height="100%" viewBox="0 0 500 384" aria-label="Gráfico de barras horizontais mostrando os tipos de medidas protetivas concedidas.">
-                            <g class="recharts-layer recharts-cartesian-grid"><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="170" y1="5" x2="470" y2="5"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="170" y1="87.66" x2="470" y2="87.66"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="170" y1="170.33" x2="470" y2="170.33"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="170" y1="253" x2="470" y2="253"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="170" y1="335.66" x2="470" y2="335.66"></line></g>
-                            <g class="recharts-layer recharts-xAxis xAxis"><text x="170" y="350" text-anchor="middle" fill="#6b7280">0</text><text x="245" y="350" text-anchor="middle" fill="#6b7280">200</text><text x="320" y="350" text-anchor="middle" fill="#6b7280">400</text><text x="395" y="350" text-anchor="middle" fill="#6b7280">600</text><text x="470" y="350" text-anchor="middle" fill="#6b7280">800</text></g>
-                            <g class="recharts-layer recharts-yAxis yAxis"><text y="46.33" x="160" text-anchor="end" fill="#6b7280">Afastamento do Lar</text><text y="129" x="160" text-anchor="end" fill="#6b7280">Proibição de Contato</text><text y="211.66" x="160" text-anchor="end" fill="#6b7280">Suspensão de Posse de Arma</text><text y="294.33" x="160" text-anchor="end" fill="#6b7280">Restrição de Visita</text></g>
-                            <g class="recharts-layer recharts-bar"><rect y="25.33" x="170" width="168.75" height="42" fill="#8b5cf6" ry="4"></rect><rect y="108" x="170" width="270" height="42" fill="#8b5cf6" ry="4"></rect><rect y="190.66" x="170" width="56.25" height="42" fill="#8b5cf6" ry="4"></rect><rect y="273.33" x="170" width="116.25" height="42" fill="#8b5cf6" ry="4"></rect></g>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-          </section>
-
-          <section id="estatisticas" class="view-section p-4 md:p-6" aria-labelledby="estatisticas-titulo">
-            <div class="mb-6">
-                <h1 id="estatisticas-titulo" class="text-2xl md:text-3xl font-bold text-gray-800">Estatísticas Detalhadas</h1>
-                <p class="text-gray-600 mt-1">Análise aprofundada do perfil das vítimas e agressores.</p>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                    <div class="p-5 border-b border-gray-200/80 bg-white/50"><h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-user-friends text-blue-500" aria-hidden="true"></i><span>Perfil da Vítima (Faixa Etária)</span></h3></div>
-                    <div class="p-5">
-                        <div class="h-80">
-                            <svg width="100%" height="100%" viewBox="0 0 500 320" aria-label="Gráfico de barras mostrando o perfil da vítima por faixa etária.">
-                                <g class="recharts-layer recharts-cartesian-grid"><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="5" x2="480" y2="5"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="67.5" x2="480" y2="67.5"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="130" x2="480" y2="130"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="192.5" x2="480" y2="192.5"></line><line stroke="#e5e7eb" stroke-dasharray="3 3" x1="60" y1="255" x2="480" y2="255"></line></g>
-                                <g class="recharts-layer recharts-xAxis xAxis"><text x="102" y="270" text-anchor="middle" fill="#6b7280">18-24 anos</text><text x="186" y="270" text-anchor="middle" fill="#6b7280">25-34 anos</text><text x="270" y="270" text-anchor="middle" fill="#6b7280">35-44 anos</text><text x="354" y="270" text-anchor="middle" fill="#6b7280">45-59 anos</text><text x="438" y="270" text-anchor="middle" fill="#6b7280">60+ anos</text></g>
-                                <g class="recharts-layer recharts-yAxis yAxis"><text x="50" y="255" text-anchor="end" fill="#6b7280">0</text><text x="50" y="192.5" text-anchor="end" fill="#6b7280">10</text><text x="50" y="130" text-anchor="end" fill="#6b7280">20</text><text x="50" y="67.5" text-anchor="end" fill="#6b7280">30</text><text x="50" y="5" text-anchor="end" fill="#6b7280">40</text></g>
-                                <g class="recharts-layer recharts-bar"><rect x="81" y="130" width="42" height="125" fill="#6366f1" rx="4" ry="4"></rect><rect x="165" y="5" width="42" height="250" fill="#6366f1" rx="4" ry="4"></rect><rect x="249" y="161.25" width="42" height="93.75" fill="#6366f1" rx="4" ry="4"></rect><rect x="333" y="217.5" width="42" height="37.5" fill="#6366f1" rx="4" ry="4"></rect><rect x="417" y="245.625" width="42" height="9.375" fill="#6366f1" rx="4" ry="4"></rect></g>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
-                    <div class="p-5 border-b border-gray-200/80 bg-white/50"><h3 class="text-lg font-bold text-gray-800 flex items-center gap-3"><i class="fas fa-male text-blue-500" aria-hidden="true"></i><span>Perfil do Agressor</span></h3></div>
-                    <div class="p-5">
-                        <div class="h-80">
-                            <svg width="100%" height="100%" viewBox="0 0 500 320" aria-label="Gráfico de pizza mostrando o perfil do agressor.">
-                                <g transform="translate(250, 140)">
-                                    <path d="M6.123233995736766e-15,-100A100,100,0,1,1,-86.60254037844388,49.99999999999998L0,0Z" fill="#6366f1" stroke="#fff"></path>
-                                    <path d="M-86.60254037844388,49.99999999999998A100,100,0,0,1,3.216245213612431e-14,-100L0,0Z" fill="#8b5cf6" stroke="#fff"></path>
-                                    <path d="M3.216245213612431e-14,-100A100,100,0,0,1,58.7785252292473,-80.90169943749476L0,0Z" fill="#a78bfa" stroke="#fff"></path>
-                                    <path d="M58.7785252292473,-80.90169943749476A100,100,0,0,1,6.123233995736766e-15,-100L0,0Z" fill="#c4b5fd" stroke="#fff"></path>
-                                </g>
-                                <g transform="translate(50, 290)">
-                                    <rect width="10" height="10" fill="#6366f1"></rect><text x="15" y="10" fill="#6b7280">Companheiro</text>
-                                    <rect x="120" width="10" height="10" fill="#8b5cf6"></rect><text x="135" y="10" fill="#6b7280">Ex-companheiro</text>
-                                    <rect x="270" width="10" height="10" fill="#a78bfa"></rect><text x="285" y="10" fill="#6b7280">Familiar</text>
-                                </g>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </section>
-
-          <section id="trabalho-e-renda" class="view-section p-4 md:p-6" aria-labelledby="trabalho-titulo">
-             <div class="bg-white rounded-xl shadow-lg p-6"><h1 id="trabalho-titulo" class="text-2xl font-bold text-gray-800">Trabalho e Renda</h1><p class="text-gray-600 mt-2">Dados e análises sobre trabalho e renda serão exibidos aqui. Esta seção está em construção.</p></div>
-          </section>
-          
-          <section id="educacao" class="view-section p-4 md:p-6" aria-labelledby="educacao-titulo">
-            <div class="bg-white rounded-xl shadow-lg p-6"><h1 id="educacao-titulo" class="text-2xl font-bold text-gray-800">Educação</h1><p class="text-gray-600 mt-2">Dados e análises sobre educação serão exibidos aqui. Esta seção está em construção.</p></div>
-          </section>
-
-          <section id="participacao-politica" class="view-section p-4 md:p-6" aria-labelledby="politica-titulo">
-            <div class="bg-white rounded-xl shadow-lg p-6"><h1 id="politica-titulo" class="text-2xl font-bold text-gray-800">Participação Política</h1><p class="text-gray-600 mt-2">Dados e análises sobre participação política serão exibidos aqui. Esta seção está em construção.</p></div>
-          </section>
-
-          <section id="analise-de-cenarios" class="view-section p-4 md:p-6 h-full overflow-y-auto" aria-labelledby="analise-titulo">
-            <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative grid grid-cols-1 lg:grid-cols-3 gap-0 min-h-[calc(100vh-5rem)]">
-                <div class="lg:col-span-2 p-6 flex flex-col">
-                    <div class="aspect-video w-full rounded-xl bg-gray-200 mb-6 relative overflow-hidden shadow-lg">
-                        <div class="w-full h-full flex items-center justify-center bg-gray-800 text-white">
-                            <div class="spinner animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
-                            <span class="ml-4">Gerando visualização...</span>
-                        </div>
-                    </div>
-                    <div class="flex-1">
-                        <h2 id="analise-titulo" class="text-2xl font-bold text-gray-800 mb-4">Desenvolvimento do Cenário</h2>
-                        <div class="space-y-3 animate-pulse">
-                            <div class="h-4 bg-gray-200 rounded w-full"></div>
-                            <div class="h-4 bg-gray-200 rounded w-5/6"></div>
-                            <div class="h-4 bg-gray-200 rounded w-full"></div>
-                            <div class="h-4 bg-gray-200 rounded w-3/4"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:col-span-1 bg-gray-50/50 p-6 flex flex-col gap-6 border-l border-gray-200/80">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700 mb-3"><i class="fas fa-tasks mr-2 text-indigo-500" aria-hidden="true"></i>Opções de Política Pública</h3>
-                        <div class="flex flex-col gap-3">
-                            <button disabled class="w-full text-left bg-white p-4 rounded-lg shadow-sm border border-gray-200 disabled:opacity-50">Aguardando cenário...</button>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700 mb-3"><i class="fas fa-bullseye mr-2 text-pink-500" aria-hidden="true"></i>Objetivo da Política</h3>
-                        <p class="text-sm text-gray-600 p-3 bg-white rounded-lg shadow-sm">Nenhum objetivo definido.</p>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700 mb-3"><i class="fas fa-chart-line mr-2 text-green-500" aria-hidden="true"></i>Indicadores-Chave</h3>
-                        <p class="text-sm text-gray-500 italic p-3 bg-white rounded-lg shadow-sm">Nenhum indicador acompanhado.</p>
-                    </div>
-                    <button disabled class="mt-auto w-full bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-red-600 transition-colors disabled:bg-gray-400">
-                        <i class="fas fa-sync-alt mr-2" aria-hidden="true"></i>Reiniciar Simulação
-                    </button>
-                </div>
-            </div>
-          </section>
-        </main>
-      </div>
-
-      <button
-        aria-label="Abrir assistente virtual"
-        class="fixed bottom-4 right-4 md:bottom-6 md:right-6 w-16 h-16 bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-full shadow-2xl flex items-center justify-center text-3xl z-10 transform hover:scale-110 transition-transform">
-        <i class="fas fa-comments" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuToggle = document.getElementById('menu-toggle');
-      const sidebar = document.getElementById('sidebar');
-      const backdrop = document.getElementById('sidebar-backdrop');
-      
-      const closeMenu = () => {
-        sidebar.classList.add('-translate-x-full');
-        backdrop.classList.add('hidden');
-      };
-      
-      const openMenu = () => {
-        sidebar.classList.remove('-translate-x-full');
-        backdrop.classList.remove('hidden');
-      };
-
-      menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (sidebar.classList.contains('-translate-x-full')) {
-            openMenu();
-        } else {
-            closeMenu();
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observatório de Gênero - Parauapebas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B3A8E;
+            --secondary: #6A1B6B;
+            --accent: #D35FB7;
+            --success: #4CAF50;
+            --info: #2196F3;
+            --warning: #FF9800;
+            --danger: #E91E63;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #dee2e6;
         }
-      });
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1676629650907-d50f2f27db20?w=1080') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+        
+        /* Sidebar Navigation */
+        .sidebar {
+            background-color: #fff;
+            height: 100vh;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            z-index: 1000;
+            width: 280px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .sidebar-header h5 {
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .sidebar-header p {
+            margin: 0;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        
+        .nav-link {
+            color: #495057;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--primary);
+            color: #fff;
+        }
+        
+        .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .content {
+            padding: 2rem;
+            margin-left: 280px;
+        }
+        
+        .card {
+            border-radius: 1rem;
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background-color: #fff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 1.25rem 1.5rem;
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+        
+        /* Stat Cards */
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-card.violence {
+            background: linear-gradient(135deg, #E91E63, #F06292);
+        }
+        
+        .stat-card.employment {
+            background: linear-gradient(135deg, #2196F3, #64B5F6);
+        }
+        
+        .stat-card.education {
+            background: linear-gradient(135deg, #4CAF50, #81C784);
+        }
+        
+        .stat-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: -1;
+            clip-path: circle(70% at 95% 20%);
+        }
+        
+        .stat-icon {
+            font-size: 3.5rem;
+            opacity: 0.2;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+        
+        .indicator-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .indicator-item:last-child {
+            border-bottom: none;
+        }
+        
+        .indicator-label {
+            font-weight: 500;
+        }
+        
+        .indicator-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .badge-gender {
+            padding: 0.5rem 1rem;
+            border-radius: 50rem;
+            font-weight: 600;
+        }
+        
+        .badge-women {
+            background-color: rgba(139, 58, 142, 0.15);
+            color: var(--primary);
+        }
+        
+        .badge-men {
+            background-color: rgba(33, 150, 243, 0.15);
+            color: var(--info);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .timeline-item {
+            padding: 1rem;
+            border-left: 3px solid var(--primary);
+            margin-left: 1rem;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -8px;
+            top: 1rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--primary);
+        }
+        
+        .resource-card {
+            padding: 1.25rem;
+            border-radius: 1rem;
+            background-color: white;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .alert-highlight {
+            background-color: rgba(233, 30, 99, 0.1);
+            border-left: 4px solid var(--danger);
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+        
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            
+            .content {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-lg-2 sidebar">
+                <div class="sidebar-header">
+                    <h5><i class="fas fa-venus me-2"></i>Observatório de Gênero</h5>
+                    <p>Município de Parauapebas</p>
+                </div>
+                
+                <ul class="nav flex-column px-3 py-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-tab="dashboard">
+                            <i class="fas fa-home"></i> <span>Painel Inicial</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-tab="indicators">
+                            <i class="fas fa-chart-line"></i> <span>Indicadores de Gênero</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-tab="violence">
+                            <i class="fas fa-shield-alt"></i> <span>Violência contra Mulher</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-tab="politics">
+                            <i class="fas fa-landmark"></i> <span>Participação Política</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-tab="demographics">
+                            <i class="fas fa-users"></i> <span>Dados Demográficos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-tab="policies">
+                            <i class="fas fa-gavel"></i> <span>Políticas Públicas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-tab="resources">
+                            <i class="fas fa-hands-helping"></i> <span>Recursos e Serviços</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-tab="about">
+                            <i class="fas fa-info-circle"></i> <span>Sobre o Observatório</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-      backdrop.addEventListener('click', closeMenu);
-      
-      sidebar.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          // Apenas fecha o menu se estiver em modo mobile (o backdrop estiver visível)
-          if (!backdrop.classList.contains('hidden')) {
-            closeMenu();
-          }
+            <!-- Main Content Area -->
+            <div class="col-lg-10 content">
+                <!-- Dashboard Tab -->
+                <div id="dashboard" class="tab-content active">
+                    <!-- Hero Section -->
+                    <div class="hero-section rounded mb-4">
+                        <div class="hero-content text-center">
+                            <h1 class="hero-title">Observatório de Gênero</h1>
+                            <p class="hero-subtitle">Município de Parauapebas - Pará</p>
+                            <p class="mt-3">Monitoramento e análise de dados sobre igualdade de gênero no município</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <i class="fas fa-female stat-icon"></i>
+                                <div class="stat-value">51,2%</div>
+                                <div class="stat-label">População Feminina</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card violence">
+                                <i class="fas fa-exclamation-triangle stat-icon"></i>
+                                <div class="stat-value">847</div>
+                                <div class="stat-label">Casos Registrados (2024)</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card employment">
+                                <i class="fas fa-briefcase stat-icon"></i>
+                                <div class="stat-value">42,3%</div>
+                                <div class="stat-label">Mulheres no Mercado</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card education">
+                                <i class="fas fa-graduation-cap stat-icon"></i>
+                                <div class="stat-value">58,1%</div>
+                                <div class="stat-label">Ensino Superior</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    Distribuição de Gênero por Setor
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-container">
+                                        <canvas id="sectorChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">Indicadores Principais</div>
+                                <div class="card-body p-0">
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">Diferença Salarial</span>
+                                        <span class="indicator-value text-danger">-23,5%</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">Mulheres em Cargos de Gestão</span>
+                                        <span class="indicator-value text-info">35,7%</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">Acesso à Saúde</span>
+                                        <span class="indicator-value text-success">78,4%</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">Participação Política</span>
+                                        <span class="indicator-value text-warning">28,3%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">Últimas Atualizações</div>
+                                <div class="card-body">
+                                    <div class="timeline-item">
+                                        <h6 class="mb-1">Relatório Anual 2024 Publicado</h6>
+                                        <small class="text-muted">15 de Outubro, 2024</small>
+                                        <p class="mt-2 mb-0">Dados consolidados sobre a situação das mulheres em Parauapebas.</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <h6 class="mb-1">Nova Lei de Proteção à Mulher</h6>
+                                        <small class="text-muted">03 de Setembro, 2024</small>
+                                        <p class="mt-2 mb-0">Aprovada lei municipal de combate à violência doméstica.</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <h6 class="mb-1">Programa de Capacitação Profissional</h6>
+                                        <small class="text-muted">12 de Agosto, 2024</small>
+                                        <p class="mt-2 mb-0">Lançamento do programa focado em empreendedorismo feminino.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">Alertas Importantes</div>
+                                <div class="card-body">
+                                    <div class="alert-highlight mb-3">
+                                        <i class="fas fa-exclamation-circle text-danger me-2"></i>
+                                        <strong>Aumento de 15% nos casos de violência doméstica</strong><br>
+                                        <small>Comparação: Último trimestre vs. mesmo período ano anterior</small>
+                                    </div>
+                                    <div class="alert-highlight mb-3" style="background-color: rgba(255, 152, 0, 0.1); border-left-color: var(--warning);">
+                                        <i class="fas fa-info-circle text-warning me-2"></i>
+                                        <strong>Disparidade salarial persiste</strong><br>
+                                        <small>Mulheres recebem em média 23,5% a menos que homens em cargos similares</small>
+                                    </div>
+                                    <div class="alert-highlight" style="background-color: rgba(76, 175, 80, 0.1); border-left-color: var(--success);">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        <strong>Aumento na representação política</strong><br>
+                                        <small>Crescimento de 8% na participação feminina em conselhos municipais</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Indicators Tab -->
+                <div id="indicators" class="tab-content">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Indicadores de Gênero</h2>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-download me-1"></i> Exportar Dados
+                        </button>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">Mercado de Trabalho</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="chart-container">
+                                                <canvas id="employmentChart"></canvas>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5 class="mb-3">Análise por Setor</h5>
+                                            <div class="indicator-item">
+                                                <div>
+                                                    <span class="indicator-label">Administração Pública</span>
+                                                    <div class="mt-2">
+                                                        <span class="badge-gender badge-women me-2">Mulheres: 48,2%</span>
+                                                        <span class="badge-gender badge-men">Homens: 51,8%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="indicator-item">
+                                                <div>
+                                                    <span class="indicator-label">Educação</span>
+                                                    <div class="mt-2">
+                                                        <span class="badge-gender badge-women me-2">Mulheres: 72,5%</span>
+                                                        <span class="badge-gender badge-men">Homens: 27,5%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="indicator-item">
+                                                <div>
+                                                    <span class="indicator-label">Saúde</span>
+                                                    <div class="mt-2">
+                                                        <span class="badge-gender badge-women me-2">Mulheres: 65,8%</span>
+                                                        <span class="badge-gender badge-men">Homens: 34,2%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="indicator-item">
+                                                <div>
+                                                    <span class="indicator-label">Indústria e Mineração</span>
+                                                    <div class="mt-2">
+                                                        <span class="badge-gender badge-women me-2">Mulheres: 18,3%</span>
+                                                        <span class="badge-gender badge-men">Homens: 81,7%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">Educação por Nível</div>
+                                <div class="card-body">
+                                    <div class="chart-container">
+                                        <canvas id="educationChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">Renda Média por Gênero</div>
+                                <div class="card-body">
+                                    <div class="chart-container">
+                                        <canvas id="incomeChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Violence Tab -->
+                <div id="violence" class="tab-content">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Violência contra a Mulher</h2>
+                        <div>
+                            <button class="btn btn-danger">
+                                <i class="fas fa-phone me-1"></i> 180 - Denuncie
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-danger">
+                        <h5><i class="fas fa-exclamation-triangle me-2"></i>Canais de Atendimento 24h</h5>
+                        <p class="mb-2"><strong>Central de Atendimento à Mulher:</strong> 180</p>
+                        <p class="mb-2"><strong>Polícia Militar:</strong> 190</p>
+                        <p class="mb-0"><strong>Casa da Mulher Brasileira:</strong> (94) 3346-1234</p>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">Casos Registrados por Tipo de Violência (2024)</div>
+                                <div class="card-body">
+                                    <div class="chart-container">
+                                        <canvas id="violenceTypesChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card mt-4">
+                                <div class="card-header">Evolução de Casos (Últimos 5 Anos)</div>
+                                <div class="card-body">
+                                    <div class="chart-container">
+                                        <canvas id="violenceEvolutionChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">Estatísticas 2024</div>
+                                <div class="card-body p-0">
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">Total de Casos</span>
+                                        <span class="indicator-value text-danger">847</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">Violência Física</span>
+                                        <span class="indicator-value">352</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">Violência Psicológica</span>
+                                        <span class="indicator-value">298</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">Violência Sexual</span>
+                                        <span class="indicator-value">87</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">Violência Patrimonial</span>
+                                        <span class="indicator-value">65</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">Feminicídio</span>
+                                        <span class="indicator-value text-danger">45</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card mt-4">
+                                <div class="card-header">Medidas Protetivas</div>
+                                <div class="card-body">
+                                    <p class="mb-2"><strong>Solicitadas:</strong> 423</p>
+                                    <p class="mb-2"><strong>Deferidas:</strong> 398 (94,1%)</p>
+                                    <p class="mb-0"><strong>Vigentes:</strong> 276</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Politics Tab -->
+                <div id="politics" class="tab-content">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Participação Política</h2>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">Representação na Câmara Municipal</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="chart-container">
+                                                <canvas id="politicsChart"></canvas>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5>Composição Atual</h5>
+                                            <div class="indicator-item">
+                                                <span class="indicator-label">Total de Vereadores</span>
+                                                <span class="indicator-value">17</span>
+                                            </div>
+                                            <div class="indicator-item">
+                                                <span class="indicator-label">Mulheres</span>
+                                                <span class="indicator-value text-danger">4 (23,5%)</span>
+                                            </div>
+                                            <div class="indicator-item">
+                                                <span class="indicator-label">Homens</span>
+                                                <span class="indicator-value">13 (76,5%)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card mt-4">
+                                <div class="card-header">Participação em Conselhos Municipais</div>
+                                <div class="card-body">
+                                    <div class="chart-container">
+                                        <canvas id="councilsChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">Cargos de Liderança</div>
+                                <div class="card-body p-0">
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">Secretarias Municipais</span>
+                                        <span class="indicator-value">30%</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">Diretorias</span>
+                                        <span class="indicator-value">42%</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-label">Coordenações</span>
+                                        <span class="indicator-value">55%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card mt-4">
+                                <div class="card-header">Meta de Paridade</div>
+                                <div class="card-body">
+                                    <p>A Lei Eleitoral estabelece cota mínima de 30% de candidaturas femininas.</p>
+                                    <div class="progress" style="height: 25px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 23.5%; background-color: var(--danger);" aria-valuenow="23.5" aria-valuemin="0" aria-valuemax="100">23,5%</div>
+                                    </div>
+                                    <p class="mt-2 text-muted">Meta: 50% (Paridade)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Demographics Tab -->
+                <div id="demographics" class="tab-content">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Dados Demográficos</h2>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">População por Gênero</div>
+                                <div class="card-body">
+                                    <div class="chart-container">
+                                        <canvas id="populationChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">Pirâmide Etária por Gênero</div>
+                                <div class="card-body">
+                                    <div class="chart-container">
+                                        <canvas id="agePyramidChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">Estatísticas Populacionais</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h6>População Total</h6>
+                                            <p class="display-6">208.273</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h6>Mulheres</h6>
+                                            <p class="display-6 text-primary">106.636</p>
+                                            <small class="text-muted">51,2%</small>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h6>Homens</h6>
+                                            <p class="display-6 text-info">101.637</p>
+                                            <small class="text-muted">48,8%</small>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h6>Razão de Sexo</h6>
+                                            <p class="display-6">95,3</p>
+                                            <small class="text-muted">homens/100 mulheres</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Policies Tab -->
+                <div id="policies" class="tab-content">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Políticas Públicas</h2>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">Programas e Iniciativas Municipais</div>
+                                <div class="card-body">
+                                    <div class="resource-card">
+                                        <h5><i class="fas fa-briefcase text-primary me-2"></i>Programa Mulher Empreendedora</h5>
+                                        <p>Capacitação profissional e apoio ao empreendedorismo feminino com cursos, microcrédito e assessoria empresarial.</p>
+                                        <small class="text-muted"><i class="fas fa-users me-1"></i>1.247 mulheres atendidas em 2024</small>
+                                    </div>
+                                    
+                                    <div class="resource-card">
+                                        <h5><i class="fas fa-home text-success me-2"></i>Casa da Mulher Brasileira</h5>
+                                        <p>Atendimento integrado para mulheres em situação de violência, oferecendo acolhimento, orientação jurídica e psicológica.</p>
+                                        <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i>Rua das Flores, 123 - Centro</small>
+                                    </div>
+                                    
+                                    <div class="resource-card">
+                                        <h5><i class="fas fa-heartbeat text-danger me-2"></i>Programa Saúde da Mulher</h5>
+                                        <p>Ações de prevenção e promoção da saúde, incluindo exames preventivos, planejamento familiar e pré-natal.</p>
+                                        <small class="text-muted"><i class="fas fa-hospital me-1"></i>Disponível em todas as UBS do município</small>
+                                    </div>
+                                    
+                                    <div class="resource-card">
+                                        <h5><i class="fas fa-book text-info me-2"></i>Programa de Alfabetização e Inclusão</h5>
+                                        <p>Educação de jovens e adultas com foco em mulheres que não tiveram acesso à escolarização.</p>
+                                        <small class="text-muted"><i class="fas fa-users me-1"></i>342 alunas matriculadas</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">Legislação Municipal</div>
+                                <div class="card-body">
+                                    <div class="timeline-item">
+                                        <h6>Lei Municipal nº 3.456/2024</h6>
+                                        <small class="text-muted">Aprovada em 03/09/2024</small>
+                                        <p class="mt-2">Dispõe sobre a criação do Programa Municipal de Combate à Violência Doméstica e Familiar contra a Mulher.</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <h6>Lei Municipal nº 3.287/2023</h6>
+                                        <small class="text-muted">Aprovada em 15/03/2023</small>
+                                        <p class="mt-2">Institui o Plano Municipal de Políticas para as Mulheres de Parauapebas.</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <h6>Decreto nº 1.892/2022</h6>
+                                        <small class="text-muted">Publicado em 08/03/2022</small>
+                                        <p class="mt-2">Cria a Coordenadoria de Políticas para as Mulheres no âmbito da Secretaria Municipal de Assistência Social.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Resources Tab -->
+                <div id="resources" class="tab-content">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Recursos e Serviços</h2>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">Equipamentos de Atendimento</div>
+                                <div class="card-body">
+                                    <div class="resource-card">
+                                        <h6><i class="fas fa-home text-danger me-2"></i>Casa da Mulher Brasileira</h6>
+                                        <p class="mb-1"><i class="fas fa-map-marker-alt me-1"></i>Rua das Flores, 123 - Centro</p>
+                                        <p class="mb-1"><i class="fas fa-phone me-1"></i>(94) 3346-1234</p>
+                                        <p class="mb-0"><i class="fas fa-clock me-1"></i>Segunda a Sexta: 8h às 18h</p>
+                                    </div>
+                                    
+                                    <div class="resource-card">
+                                        <h6><i class="fas fa-shield-alt text-primary me-2"></i>Delegacia da Mulher</h6>
+                                        <p class="mb-1"><i class="fas fa-map-marker-alt me-1"></i>Av. Central, 456 - Centro</p>
+                                        <p class="mb-1"><i class="fas fa-phone me-1"></i>(94) 3346-5678</p>
+                                        <p class="mb-0"><i class="fas fa-clock me-1"></i>24 horas</p>
+                                    </div>
+                                    
+                                    <div class="resource-card">
+                                        <h6><i class="fas fa-balance-scale text-success me-2"></i>Núcleo de Defensoria Pública</h6>
+                                        <p class="mb-1"><i class="fas fa-map-marker-alt me-1"></i>Rua da Justiça, 789 - Centro</p>
+                                        <p class="mb-1"><i class="fas fa-phone me-1"></i>(94) 3346-9012</p>
+                                        <p class="mb-0"><i class="fas fa-clock me-1"></i>Segunda a Sexta: 8h às 14h</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">Canais de Denúncia e Apoio</div>
+                                <div class="card-body">
+                                    <div class="alert alert-danger mb-3">
+                                        <h6><i class="fas fa-phone-volume me-2"></i>Em caso de emergência:</h6>
+                                        <p class="mb-1"><strong>190</strong> - Polícia Militar</p>
+                                        <p class="mb-0"><strong>192</strong> - SAMU</p>
+                                    </div>
+                                    
+                                    <div class="resource-card">
+                                        <h6>Central de Atendimento à Mulher</h6>
+                                        <p class="mb-2"><strong>Telefone:</strong> 180</p>
+                                        <p class="mb-0">Atendimento gratuito 24 horas para denúncias e orientações.</p>
+                                    </div>
+                                    
+                                    <div class="resource-card">
+                                        <h6>Disque Direitos Humanos</h6>
+                                        <p class="mb-2"><strong>Telefone:</strong> 100</p>
+                                        <p class="mb-0">Denúncias de violações de direitos humanos.</p>
+                                    </div>
+                                    
+                                    <div class="resource-card">
+                                        <h6>Ouvidoria da Mulher</h6>
+                                        <p class="mb-2"><strong>Email:</strong> ouvidoria.mulher@parauapebas.pa.gov.br</p>
+                                        <p class="mb-0">Sugestões, reclamações e elogios sobre os serviços municipais.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- About Tab -->
+                <div id="about" class="tab-content">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Sobre o Observatório</h2>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="mb-4">O que é o Observatório de Gênero?</h4>
+                            <p>O Observatório de Gênero do Município de Parauapebas é uma plataforma de monitoramento e análise de dados sobre a situação das mulheres no município. Criado em 2022, o Observatório tem como objetivo:</p>
+                            
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Coletar, organizar e divulgar dados sobre igualdade de gênero</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Monitorar indicadores sociais, econômicos e políticos relacionados às mulheres</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Subsidiar a formulação de políticas públicas com dados e evidências</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Acompanhar a implementação de programas e ações voltados para as mulheres</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Promover a transparência e o controle social das políticas de gênero</li>
+                            </ul>
+                            
+                            <h5 class="mt-4 mb-3">Fontes de Dados</h5>
+                            <p>Os dados apresentados neste Observatório são coletados de diversas fontes oficiais:</p>
+                            <ul>
+                                <li>Instituto Brasileiro de Geografia e Estatística (IBGE)</li>
+                                <li>Secretaria Municipal de Saúde</li>
+                                <li>Secretaria Municipal de Educação</li>
+                                <li>Secretaria de Segurança Pública do Estado do Pará</li>
+                                <li>Tribunal Regional Eleitoral do Pará (TRE-PA)</li>
+                                <li>Coordenadoria de Políticas para as Mulheres</li>
+                            </ul>
+                            
+                            <h5 class="mt-4 mb-3">Equipe Técnica</h5>
+                            <p>O Observatório é coordenado pela Coordenadoria de Políticas para as Mulheres, com apoio técnico de:</p>
+                            <ul>
+                                <li>Secretaria Municipal de Planejamento</li>
+                                <li>Departamento de Estatística e Indicadores</li>
+                                <li>Conselho Municipal dos Direitos da Mulher</li>
+                            </ul>
+                            
+                            <div class="alert alert-info mt-4">
+                                <h6><i class="fas fa-envelope me-2"></i>Entre em Contato</h6>
+                                <p class="mb-1"><strong>Email:</strong> observatorio.genero@parauapebas.pa.gov.br</p>
+                                <p class="mb-1"><strong>Telefone:</strong> (94) 3346-2000</p>
+                                <p class="mb-0"><strong>Endereço:</strong> Praça da Prefeitura, s/n - Centro, Parauapebas - PA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+    <script>
+        // Navigation
+        document.querySelectorAll('[data-tab]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelectorAll('[data-tab]').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                this.classList.add('active');
+                document.getElementById(this.dataset.tab).classList.add('active');
+            });
         });
-      });
-    });
-  </script>
-</body>
 
+        // Chart configurations
+        const chartColors = {
+            primary: '#8B3A8E',
+            secondary: '#6A1B6B',
+            accent: '#D35FB7',
+            success: '#4CAF50',
+            info: '#2196F3',
+            warning: '#FF9800',
+            danger: '#E91E63'
+        };
+
+        // Sector Chart
+        const sectorCtx = document.getElementById('sectorChart');
+        if (sectorCtx) {
+            new Chart(sectorCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Administração Pública', 'Educação', 'Saúde', 'Comércio', 'Indústria'],
+                    datasets: [{
+                        label: 'Mulheres',
+                        data: [48.2, 72.5, 65.8, 54.3, 18.3],
+                        backgroundColor: chartColors.primary
+                    }, {
+                        label: 'Homens',
+                        data: [51.8, 27.5, 34.2, 45.7, 81.7],
+                        backgroundColor: chartColors.info
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        }
+
+        // Employment Chart
+        const employmentCtx = document.getElementById('employmentChart');
+        if (employmentCtx) {
+            new Chart(employmentCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Mulheres Empregadas', 'Homens Empregados', 'Mulheres Desempregadas', 'Homens Desempregados'],
+                    datasets: [{
+                        data: [42.3, 57.7, 12.5, 9.8],
+                        backgroundColor: [chartColors.primary, chartColors.info, chartColors.accent, chartColors.secondary]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        // Education Chart
+        const educationCtx = document.getElementById('educationChart');
+        if (educationCtx) {
+            new Chart(educationCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Fundamental', 'Médio', 'Superior', 'Pós-graduação'],
+                    datasets: [{
+                        label: 'Mulheres',
+                        data: [45.2, 52.7, 58.1, 61.4],
+                        backgroundColor: chartColors.primary
+                    }, {
+                        label: 'Homens',
+                        data: [54.8, 47.3, 41.9, 38.6],
+                        backgroundColor: chartColors.info
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        }
+
+        // Income Chart
+        const incomeCtx = document.getElementById('incomeChart');
+        if (incomeCtx) {
+            new Chart(incomeCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Salário Médio'],
+                    datasets: [{
+                        label: 'Mulheres',
+                        data: [2847],
+                        backgroundColor: chartColors.primary
+                    }, {
+                        label: 'Homens',
+                        data: [3721],
+                        backgroundColor: chartColors.info
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return 'R$ ' + value;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Violence Types Chart
+        const violenceTypesCtx = document.getElementById('violenceTypesChart');
+        if (violenceTypesCtx) {
+            new Chart(violenceTypesCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Violência Física', 'Violência Psicológica', 'Violência Sexual', 'Violência Patrimonial', 'Feminicídio'],
+                    datasets: [{
+                        data: [352, 298, 87, 65, 45],
+                        backgroundColor: [chartColors.danger, chartColors.warning, chartColors.primary, chartColors.info, chartColors.secondary]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        // Violence Evolution Chart
+        const violenceEvolutionCtx = document.getElementById('violenceEvolutionChart');
+        if (violenceEvolutionCtx) {
+            new Chart(violenceEvolutionCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2020', '2021', '2022', '2023', '2024'],
+                    datasets: [{
+                        label: 'Casos Registrados',
+                        data: [612, 698, 743, 789, 847],
+                        borderColor: chartColors.danger,
+                        backgroundColor: 'rgba(233, 30, 99, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        // Politics Chart
+        const politicsCtx = document.getElementById('politicsChart');
+        if (politicsCtx) {
+            new Chart(politicsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Mulheres', 'Homens'],
+                    datasets: [{
+                        data: [23.5, 76.5],
+                        backgroundColor: [chartColors.primary, chartColors.info]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        // Councils Chart
+        const councilsCtx = document.getElementById('councilsChart');
+        if (councilsCtx) {
+            new Chart(councilsCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Saúde', 'Educação', 'Assistência Social', 'Meio Ambiente', 'Cultura'],
+                    datasets: [{
+                        label: 'Mulheres',
+                        data: [45, 62, 58, 38, 51],
+                        backgroundColor: chartColors.primary
+                    }, {
+                        label: 'Homens',
+                        data: [55, 38, 42, 62, 49],
+                        backgroundColor: chartColors.info
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        }
+
+        // Population Chart
+        const populationCtx = document.getElementById('populationChart');
+        if (populationCtx) {
+            new Chart(populationCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Mulheres (51,2%)', 'Homens (48,8%)'],
+                    datasets: [{
+                        data: [106636, 101637],
+                        backgroundColor: [chartColors.primary, chartColors.info]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        // Age Pyramid Chart
+        const agePyramidCtx = document.getElementById('agePyramidChart');
+        if (agePyramidCtx) {
+            new Chart(agePyramidCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['0-14', '15-29', '30-44', '45-59', '60+'],
+                    datasets: [{
+                        label: 'Mulheres',
+                        data: [-28.5, -24.3, -22.1, -15.8, -9.3],
+                        backgroundColor: chartColors.primary
+                    }, {
+                        label: 'Homens',
+                        data: [29.2, 25.1, 21.8, 14.9, 8.9],
+                        backgroundColor: chartColors.info
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            ticks: {
+                                callback: function(value) {
+                                    return Math.abs(value) + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
 </html>
