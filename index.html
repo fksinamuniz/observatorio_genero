@@ -72,6 +72,7 @@
         /* Sidebar Navigation */
         .sidebar {
             background-color: #fff;
+            color: #333;
             height: 100vh;
             box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
             z-index: 1000;
@@ -84,6 +85,7 @@
         
         .sidebar-header {
             padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
         }
@@ -107,11 +109,13 @@
             transition: all 0.3s;
             white-space: nowrap;
             overflow: hidden;
+            font-weight: 500;
         }
         
         .nav-link:hover, .nav-link.active {
             background-color: var(--primary);
             color: #fff;
+            font-weight: 700;
         }
         
         .nav-link i {
@@ -160,18 +164,19 @@
             overflow: hidden;
             z-index: 1;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 100%;
         }
         
-        .stat-card.violence {
+        .stat-card.politics {
+            background: linear-gradient(135deg, #6A1B6B, #9C27B0);
+        }
+        
+        .stat-card.health-teen {
+            background: linear-gradient(135deg, #FF9800, #FFC107);
+        }
+        
+        .stat-card.health-maternal {
             background: linear-gradient(135deg, #E91E63, #F06292);
-        }
-        
-        .stat-card.employment {
-            background: linear-gradient(135deg, #2196F3, #64B5F6);
-        }
-        
-        .stat-card.education {
-            background: linear-gradient(135deg, #4CAF50, #81C784);
         }
         
         .stat-card::after {
@@ -316,6 +321,15 @@
                 font-size: 2.5rem;
             }
         }
+
+        .footer-copyright {
+            padding: 1.5rem 0;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--light-gray);
+            margin-top: 2rem;
+        }
     </style>
 </head>
 <body>
@@ -336,12 +350,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-tab="indicators">
-                            <i class="fas fa-chart-line"></i> <span>Indicadores de Gênero</span>
+                            <i class="fas fa-chart-line"></i> <span>Indicadores</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-tab="violence">
-                            <i class="fas fa-shield-alt"></i> <span>Violência contra Mulher</span>
+                            <i class="fas fa-shield-alt"></i> <span>Saúde e Violência</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -381,7 +395,7 @@
                         <div class="hero-content text-center">
                             <h1 class="hero-title">Observatório de Gênero</h1>
                             <p class="hero-subtitle">Município de Parauapebas - Pará</p>
-                            <p class="mt-3">Monitoramento e análise de dados sobre igualdade de gênero no município</p>
+                            <p class="mt-3">Monitoramento e análise de dados sobre igualdade de gênero no município<br>(Fonte: FAPESPA, Estatística Municipal 2024)</p>
                         </div>
                     </div>
                     
@@ -389,67 +403,29 @@
                         <div class="col-md-3">
                             <div class="stat-card">
                                 <i class="fas fa-female stat-icon"></i>
-                                <div class="stat-value">51,2%</div>
-                                <div class="stat-label">População Feminina</div>
+                                <div class="stat-value">50,0%</div>
+                                <div class="stat-label">População Feminina (2022)</div>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="stat-card violence">
-                                <i class="fas fa-exclamation-triangle stat-icon"></i>
-                                <div class="stat-value">847</div>
-                                <div class="stat-label">Casos Registrados (2024)</div>
+                            <div class="stat-card politics">
+                                <i class="fas fa-vote-yea stat-icon"></i>
+                                <div class="stat-value">49,6%</div>
+                                <div class="stat-label">Eleitoras (2024)</div>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="stat-card employment">
-                                <i class="fas fa-briefcase stat-icon"></i>
-                                <div class="stat-value">42,3%</div>
-                                <div class="stat-label">Mulheres no Mercado</div>
+                            <div class="stat-card health-teen">
+                                <i class="fas fa-baby stat-icon"></i>
+                                <div class="stat-value">681</div>
+                                <div class="stat-label">Nascimentos (Mães 10-19 anos, 2023)</div>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="stat-card education">
-                                <i class="fas fa-graduation-cap stat-icon"></i>
-                                <div class="stat-value">58,1%</div>
-                                <div class="stat-label">Ensino Superior</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row mt-4">
-                        <div class="col-md-8">
-                            <div class="card">
-                                <div class="card-header">
-                                    Distribuição de Gênero por Setor
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart-container">
-                                        <canvas id="sectorChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header">Indicadores Principais</div>
-                                <div class="card-body p-0">
-                                    <div class="indicator-item">
-                                        <span class="indicator-label">Diferença Salarial</span>
-                                        <span class="indicator-value text-danger">-23,5%</span>
-                                    </div>
-                                    <div class="indicator-item">
-                                        <span class="indicator-label">Mulheres em Cargos de Gestão</span>
-                                        <span class="indicator-value text-info">35,7%</span>
-                                    </div>
-                                    <div class="indicator-item">
-                                        <span class="indicator-label">Acesso à Saúde</span>
-                                        <span class="indicator-value text-success">78,4%</span>
-                                    </div>
-                                    <div class="indicator-item">
-                                        <span class="indicator-label">Participação Política</span>
-                                        <span class="indicator-value text-warning">28,3%</span>
-                                    </div>
-                                </div>
+                            <div class="stat-card health-maternal">
+                                <i class="fas fa-heartbeat stat-icon"></i>
+                                <div class="stat-value">4</div>
+                                <div class="stat-label">Mortes Maternas (2023)</div>
                             </div>
                         </div>
                     </div>
@@ -457,44 +433,40 @@
                     <div class="row mt-4">
                         <div class="col-md-6">
                             <div class="card">
-                                <div class="card-header">Últimas Atualizações</div>
+                                <div class="card-header">Últimas Atualizações (Dados do PDF)</div>
                                 <div class="card-body">
                                     <div class="timeline-item">
-                                        <h6 class="mb-1">Relatório Anual 2024 Publicado</h6>
-                                        <small class="text-muted">15 de Outubro, 2024</small>
-                                        <p class="mt-2 mb-0">Dados consolidados sobre a situação das mulheres em Parauapebas.</p>
+                                        <h6 class="mb-1">Dados Eleitorais (2024)</h6>
+                                        <small class="text-muted">Fonte: TRE</small>
+                                        <p class="mt-2 mb-0">Total: 200.576 eleitores, sendo 99.410 mulheres (49,6%).</p>
                                     </div>
                                     <div class="timeline-item">
-                                        <h6 class="mb-1">Nova Lei de Proteção à Mulher</h6>
-                                        <small class="text-muted">03 de Setembro, 2024</small>
-                                        <p class="mt-2 mb-0">Aprovada lei municipal de combate à violência doméstica.</p>
+                                        <h6 class="mb-1">Dados de Saúde (2023)</h6>
+                                        <small class="text-muted">Fonte: DATASUS/MS</small>
+                                        <p class="mt-2 mb-0">Registrados 4.823 nascimentos, 4 mortes maternas e 1.017 óbitos totais.</p>
                                     </div>
                                     <div class="timeline-item">
-                                        <h6 class="mb-1">Programa de Capacitação Profissional</h6>
-                                        <small class="text-muted">12 de Agosto, 2024</small>
-                                        <p class="mt-2 mb-0">Lançamento do programa focado em empreendedorismo feminino.</p>
+                                        <h6 class="mb-1">Dados Populacionais (2022)</h6>
+                                        <small class="text-muted">Fonte: IBGE</small>
+                                        <p class="mt-2 mb-0">Censo 2022 registrou 133.914 mulheres e 133.922 homens.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="card">
-                                <div class="card-header">Alertas Importantes</div>
+                                <div class="card-header">Alertas (Limitação da Fonte)</div>
                                 <div class="card-body">
-                                    <div class="alert-highlight mb-3">
-                                        <i class="fas fa-exclamation-circle text-danger me-2"></i>
-                                        <strong>Aumento de 15% nos casos de violência doméstica</strong><br>
-                                        <small>Comparação: Último trimestre vs. mesmo período ano anterior</small>
-                                    </div>
+                                    <!-- AVISO DE VIOLÊNCIA REMOVIDO POIS OS DADOS FORAM INSERIDOS -->
                                     <div class="alert-highlight mb-3" style="background-color: rgba(255, 152, 0, 0.1); border-left-color: var(--warning);">
                                         <i class="fas fa-info-circle text-warning me-2"></i>
-                                        <strong>Disparidade salarial persiste</strong><br>
-                                        <small>Mulheres recebem em média 23,5% a menos que homens em cargos similares</small>
+                                        <strong>Dados de Economia Indisponíveis</strong><br>
+                                        <small>O PDF não contém dados sobre disparidade salarial ou participação feminina no mercado de trabalho por setor.</small>
                                     </div>
-                                    <div class="alert-highlight" style="background-color: rgba(76, 175, 80, 0.1); border-left-color: var(--success);">
-                                        <i class="fas fa-check-circle text-success me-2"></i>
-                                        <strong>Aumento na representação política</strong><br>
-                                        <small>Crescimento de 8% na participação feminina em conselhos municipais</small>
+                                    <div class="alert-highlight" style="background-color: rgba(33, 150, 243, 0.1); border-left-color: var(--info);">
+                                        <i class="fas fa-info-circle text-info me-2"></i>
+                                        <strong>Dados de Educação Indisponíveis</strong><br>
+                                        <small>O PDF não desagrega dados de matrícula ou nível de instrução por gênero.</small>
                                     </div>
                                 </div>
                             </div>
@@ -505,87 +477,19 @@
                 <!-- Indicators Tab -->
                 <div id="indicators" class="tab-content">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h2>Indicadores de Gênero</h2>
-                        <button class="btn btn-primary">
-                            <i class="fas fa-download me-1"></i> Exportar Dados
-                        </button>
+                        <h2>Indicadores</h2>
                     </div>
                     
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header">Mercado de Trabalho</div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="chart-container">
-                                                <canvas id="employmentChart"></canvas>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <h5 class="mb-3">Análise por Setor</h5>
-                                            <div class="indicator-item">
-                                                <div>
-                                                    <span class="indicator-label">Administração Pública</span>
-                                                    <div class="mt-2">
-                                                        <span class="badge-gender badge-women me-2">Mulheres: 48,2%</span>
-                                                        <span class="badge-gender badge-men">Homens: 51,8%</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="indicator-item">
-                                                <div>
-                                                    <span class="indicator-label">Educação</span>
-                                                    <div class="mt-2">
-                                                        <span class="badge-gender badge-women me-2">Mulheres: 72,5%</span>
-                                                        <span class="badge-gender badge-men">Homens: 27,5%</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="indicator-item">
-                                                <div>
-                                                    <span class="indicator-label">Saúde</span>
-                                                    <div class="mt-2">
-                                                        <span class="badge-gender badge-women me-2">Mulheres: 65,8%</span>
-                                                        <span class="badge-gender badge-men">Homens: 34,2%</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="indicator-item">
-                                                <div>
-                                                    <span class="indicator-label">Indústria e Mineração</span>
-                                                    <div class="mt-2">
-                                                        <span class="badge-gender badge-women me-2">Mulheres: 18,3%</span>
-                                                        <span class="badge-gender badge-men">Homens: 81,7%</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">Educação por Nível</div>
-                                <div class="card-body">
-                                    <div class="chart-container">
-                                        <canvas id="educationChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">Renda Média por Gênero</div>
-                                <div class="card-body">
-                                    <div class="chart-container">
-                                        <canvas id="incomeChart"></canvas>
-                                    </div>
-                                </div>
+                            <div class="alert alert-warning">
+                                <h5>Dados Não Disponíveis na Fonte</h5>
+                                <p>O documento PDF "Estatística Municipal - Parauapebas" (FAPESPA) não fornece dados desagregados por gênero para os seguintes indicadores:</p>
+                                <ul>
+                                    <li>Mercado de Trabalho (taxa de ocupação, desemprego, renda média, diferença salarial).</li>
+                                    <li>Educação (nível de instrução, matrículas por nível, taxas de abandono/aprovação).</li>
+                                </ul>
+                                <p>Portanto, não é possível preencher os gráficos desta seção com a fonte fornecida.</p>
                             </div>
                         </div>
                     </div>
@@ -594,7 +498,7 @@
                 <!-- Violence Tab -->
                 <div id="violence" class="tab-content">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h2>Violência contra a Mulher</h2>
+                        <h2>Saúde e Violência</h2>
                         <div>
                             <button class="btn btn-danger">
                                 <i class="fas fa-phone me-1"></i> 180 - Denuncie
@@ -602,72 +506,47 @@
                         </div>
                     </div>
                     
-                    <div class="alert alert-danger">
-                        <h5><i class="fas fa-exclamation-triangle me-2"></i>Canais de Atendimento 24h</h5>
-                        <p class="mb-2"><strong>Central de Atendimento à Mulher:</strong> 180</p>
-                        <p class="mb-2"><strong>Polícia Militar:</strong> 190</p>
-                        <p class="mb-0"><strong>Casa da Mulher Brasileira:</strong> (94) 3346-1234</p>
-                    </div>
+                    <!-- AVISO DE DADOS NÃO ENCONTRADOS REMOVIDO -->
                     
                     <div class="row">
                         <div class="col-md-8">
                             <div class="card">
-                                <div class="card-header">Casos Registrados por Tipo de Violência (2024)</div>
-                                <div class="card-body">
-                                    <div class="chart-container">
-                                        <canvas id="violenceTypesChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="card mt-4">
-                                <div class="card-header">Evolução de Casos (Últimos 5 Anos)</div>
+                                <div class="card-header">Evolução das Notificações de Violência (2010-2024)</div>
                                 <div class="card-body">
                                     <div class="chart-container">
                                         <canvas id="violenceEvolutionChart"></canvas>
                                     </div>
+                                    <small class="text-muted">Fonte: SINAN (Arquivos CSV fornecidos)</small>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="col-md-4">
                             <div class="card">
-                                <div class="card-header">Estatísticas 2024</div>
+                                <div class="card-header">Resumo Saúde da Mulher (2023)</div>
                                 <div class="card-body p-0">
                                     <div class="indicator-item">
-                                        <span class="indicator-label">Total de Casos</span>
-                                        <span class="indicator-value text-danger">847</span>
+                                        <span class="indicator-label">Notificações de Violência</span>
+                                        <span class="indicator-value text-danger">611</span>
                                     </div>
                                     <div class="indicator-item">
-                                        <span class="indicator-label">Violência Física</span>
-                                        <span class="indicator-value">352</span>
+                                        <span class="indicator-label">Mortes Maternas</span>
+                                        <span class="indicator-value text-danger">4</span>
                                     </div>
                                     <div class="indicator-item">
-                                        <span class="indicator-label">Violência Psicológica</span>
-                                        <span class="indicator-value">298</span>
+                                        <span class="indicator-label">Nascimentos (Total)</span>
+                                        <span class="indicator-value">4.823</span>
                                     </div>
                                     <div class="indicator-item">
-                                        <span class="indicator-label">Violência Sexual</span>
-                                        <span class="indicator-value">87</span>
+                                        <span class="indicator-label">Nascimentos (Mães 10-19 anos)</span>
+                                        <span class="indicator-value text-warning">681</span>
                                     </div>
                                     <div class="indicator-item">
-                                        <span class="indicator-label">Violência Patrimonial</span>
-                                        <span class="indicator-value">65</span>
-                                    </div>
-                                    <div class="indicator-item">
-                                        <span class="indicator-label">Feminicídio</span>
-                                        <span class="indicator-value text-danger">45</span>
+                                        <span class="indicator-label">Nascimentos (Mães 10-14 anos)</span>
+                                        <span class="indicator-value text-danger">29</span>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <div class="card mt-4">
-                                <div class="card-header">Medidas Protetivas</div>
-                                <div class="card-body">
-                                    <p class="mb-2"><strong>Solicitadas:</strong> 423</p>
-                                    <p class="mb-2"><strong>Deferidas:</strong> 398 (94,1%)</p>
-                                    <p class="mb-0"><strong>Vigentes:</strong> 276</p>
-                                </div>
+                                <small class="text-muted p-3">Fonte: SINAN (Violência) e FAPESPA/DATASUS (Saúde)</small>
                             </div>
                         </div>
                     </div>
@@ -682,7 +561,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="card">
-                                <div class="card-header">Representação na Câmara Municipal</div>
+                                <div class="card-header">Eleitorado por Gênero (2024)</div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -691,62 +570,30 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <h5>Composição Atual</h5>
+                                            <h5>Composição do Eleitorado (2024)</h5>
                                             <div class="indicator-item">
-                                                <span class="indicator-label">Total de Vereadores</span>
-                                                <span class="indicator-value">17</span>
+                                                <span class="indicator-label">Total de Eleitores</span>
+                                                <span class="indicator-value">200.576</span>
                                             </div>
                                             <div class="indicator-item">
-                                                <span class="indicator-label">Mulheres</span>
-                                                <span class="indicator-value text-danger">4 (23,5%)</span>
+                                                <span class="indicator-label">Eleitoras (Mulheres)</span>
+                                                <span class="indicator-value text-primary">99.410 (49,6%)</span>
                                             </div>
                                             <div class="indicator-item">
-                                                <span class="indicator-label">Homens</span>
-                                                <span class="indicator-value">13 (76,5%)</span>
+                                                <span class="indicator-label">Eleitores (Homens)</span>
+                                                <span class="indicator-value text-info">101.166 (50,4%)</span>
                                             </div>
+                                            <small class="text-muted p-3">Fonte: FAPESPA/TRE</small>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="card mt-4">
-                                <div class="card-header">Participação em Conselhos Municipais</div>
-                                <div class="card-body">
-                                    <div class="chart-container">
-                                        <canvas id="councilsChart"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header">Cargos de Liderança</div>
-                                <div class="card-body p-0">
-                                    <div class="indicator-item">
-                                        <span class="indicator-label">Secretarias Municipais</span>
-                                        <span class="indicator-value">30%</span>
-                                    </div>
-                                    <div class="indicator-item">
-                                        <span class="indicator-label">Diretorias</span>
-                                        <span class="indicator-value">42%</span>
-                                    </div>
-                                    <div class="indicator-item">
-                                        <span class="indicator-label">Coordenações</span>
-                                        <span class="indicator-value">55%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="card mt-4">
-                                <div class="card-header">Meta de Paridade</div>
-                                <div class="card-body">
-                                    <p>A Lei Eleitoral estabelece cota mínima de 30% de candidaturas femininas.</p>
-                                    <div class="progress" style="height: 25px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 23.5%; background-color: var(--danger);" aria-valuenow="23.5" aria-valuemin="0" aria-valuemax="100">23,5%</div>
-                                    </div>
-                                    <p class="mt-2 text-muted">Meta: 50% (Paridade)</p>
-                                </div>
+                            <div class="alert alert-warning">
+                                <h5>Dados Não Disponíveis na Fonte</h5>
+                                <p>O documento PDF da FAPESPA não informa a composição por gênero da Câmara Municipal, Secretarias ou Conselhos Municipais. Os dados disponíveis referem-se apenas ao eleitorado.</p>
                             </div>
                         </div>
                     </div>
@@ -761,11 +608,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card">
-                                <div class="card-header">População por Gênero</div>
+                                <div class="card-header">População por Gênero (Censo 2022)</div>
                                 <div class="card-body">
                                     <div class="chart-container">
                                         <canvas id="populationChart"></canvas>
                                     </div>
+                                    <small class="text-muted p-3">Fonte: FAPESPA/IBGE</small>
                                 </div>
                             </div>
                         </div>
@@ -773,8 +621,9 @@
                             <div class="card">
                                 <div class="card-header">Pirâmide Etária por Gênero</div>
                                 <div class="card-body">
-                                    <div class="chart-container">
-                                        <canvas id="agePyramidChart"></canvas>
+                                    <div class="alert alert-warning">
+                                        <h5>Dados Não Disponíveis na Fonte</h5>
+                                        <p>O PDF (Tabela 3.1.4) fornece a população por faixa etária, mas **não** desagrega esses dados por gênero. Portanto, não é possível construir a pirâmide etária de gênero com a fonte fornecida.</p>
                                     </div>
                                 </div>
                             </div>
@@ -784,29 +633,30 @@
                     <div class="row mt-4">
                         <div class="col-md-12">
                             <div class="card">
-                                <div class="card-header">Estatísticas Populacionais</div>
+                                <div class="card-header">Estatísticas Populacionais (Censo 2022)</div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <h6>População Total</h6>
-                                            <p class="display-6">208.273</p>
+                                            <p class="display-6">267.836</p>
                                         </div>
                                         <div class="col-md-3">
                                             <h6>Mulheres</h6>
-                                            <p class="display-6 text-primary">106.636</p>
-                                            <small class="text-muted">51,2%</small>
+                                            <p class="display-6 text-primary">133.914</p>
+                                            <small class="text-muted">49,998%</small>
                                         </div>
                                         <div class="col-md-3">
                                             <h6>Homens</h6>
                                             <p class="display-6 text-info">101.637</p>
-                                            <small class="text-muted">48,8%</small>
+                                            <small class="text-muted">50,002%</small>
                                         </div>
                                         <div class="col-md-3">
                                             <h6>Razão de Sexo</h6>
-                                            <p class="display-6">95,3</p>
-                                            <small class="text-muted">homens/100 mulheres</small>
+                                            <p class="display-6">1,00</p>
+                                            <small class="text-muted">homens/100 mulheres (2022)</small>
                                         </div>
                                     </div>
+                                    <small class="text-muted p-3">Fonte: FAPESPA/IBGE</small>
                                 </div>
                             </div>
                         </div>
@@ -824,53 +674,21 @@
                             <div class="card">
                                 <div class="card-header">Programas e Iniciativas Municipais</div>
                                 <div class="card-body">
+                                    <div class="alert alert-info">Nota: Esta seção é um modelo do observatório e não foi preenchida com dados do PDF da FAPESPA, que não contém essas informações.</div>
+
                                     <div class="resource-card">
                                         <h5><i class="fas fa-briefcase text-primary me-2"></i>Programa Mulher Empreendedora</h5>
                                         <p>Capacitação profissional e apoio ao empreendedorismo feminino com cursos, microcrédito e assessoria empresarial.</p>
-                                        <small class="text-muted"><i class="fas fa-users me-1"></i>1.247 mulheres atendidas em 2024</small>
                                     </div>
                                     
                                     <div class="resource-card">
                                         <h5><i class="fas fa-home text-success me-2"></i>Casa da Mulher Brasileira</h5>
                                         <p>Atendimento integrado para mulheres em situação de violência, oferecendo acolhimento, orientação jurídica e psicológica.</p>
-                                        <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i>Rua das Flores, 123 - Centro</small>
                                     </div>
                                     
                                     <div class="resource-card">
                                         <h5><i class="fas fa-heartbeat text-danger me-2"></i>Programa Saúde da Mulher</h5>
                                         <p>Ações de prevenção e promoção da saúde, incluindo exames preventivos, planejamento familiar e pré-natal.</p>
-                                        <small class="text-muted"><i class="fas fa-hospital me-1"></i>Disponível em todas as UBS do município</small>
-                                    </div>
-                                    
-                                    <div class="resource-card">
-                                        <h5><i class="fas fa-book text-info me-2"></i>Programa de Alfabetização e Inclusão</h5>
-                                        <p>Educação de jovens e adultas com foco em mulheres que não tiveram acesso à escolarização.</p>
-                                        <small class="text-muted"><i class="fas fa-users me-1"></i>342 alunas matriculadas</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row mt-4">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header">Legislação Municipal</div>
-                                <div class="card-body">
-                                    <div class="timeline-item">
-                                        <h6>Lei Municipal nº 3.456/2024</h6>
-                                        <small class="text-muted">Aprovada em 03/09/2024</small>
-                                        <p class="mt-2">Dispõe sobre a criação do Programa Municipal de Combate à Violência Doméstica e Familiar contra a Mulher.</p>
-                                    </div>
-                                    <div class="timeline-item">
-                                        <h6>Lei Municipal nº 3.287/2023</h6>
-                                        <small class="text-muted">Aprovada em 15/03/2023</small>
-                                        <p class="mt-2">Institui o Plano Municipal de Políticas para as Mulheres de Parauapebas.</p>
-                                    </div>
-                                    <div class="timeline-item">
-                                        <h6>Decreto nº 1.892/2022</h6>
-                                        <small class="text-muted">Publicado em 08/03/2022</small>
-                                        <p class="mt-2">Cria a Coordenadoria de Políticas para as Mulheres no âmbito da Secretaria Municipal de Assistência Social.</p>
                                     </div>
                                 </div>
                             </div>
@@ -885,6 +703,9 @@
                     </div>
                     
                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-info">Nota: Esta seção é um modelo do observatório e não foi preenchida com dados do PDF da FAPESPA, que não contém essas informações.</div>
+                        </div>
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header">Equipamentos de Atendimento</div>
@@ -893,21 +714,18 @@
                                         <h6><i class="fas fa-home text-danger me-2"></i>Casa da Mulher Brasileira</h6>
                                         <p class="mb-1"><i class="fas fa-map-marker-alt me-1"></i>Rua das Flores, 123 - Centro</p>
                                         <p class="mb-1"><i class="fas fa-phone me-1"></i>(94) 3346-1234</p>
-                                        <p class="mb-0"><i class="fas fa-clock me-1"></i>Segunda a Sexta: 8h às 18h</p>
                                     </div>
                                     
                                     <div class="resource-card">
                                         <h6><i class="fas fa-shield-alt text-primary me-2"></i>Delegacia da Mulher</h6>
                                         <p class="mb-1"><i class="fas fa-map-marker-alt me-1"></i>Av. Central, 456 - Centro</p>
                                         <p class="mb-1"><i class="fas fa-phone me-1"></i>(94) 3346-5678</p>
-                                        <p class="mb-0"><i class="fas fa-clock me-1"></i>24 horas</p>
                                     </div>
                                     
                                     <div class="resource-card">
                                         <h6><i class="fas fa-balance-scale text-success me-2"></i>Núcleo de Defensoria Pública</h6>
                                         <p class="mb-1"><i class="fas fa-map-marker-alt me-1"></i>Rua da Justiça, 789 - Centro</p>
                                         <p class="mb-1"><i class="fas fa-phone me-1"></i>(94) 3346-9012</p>
-                                        <p class="mb-0"><i class="fas fa-clock me-1"></i>Segunda a Sexta: 8h às 14h</p>
                                     </div>
                                 </div>
                             </div>
@@ -926,19 +744,11 @@
                                     <div class="resource-card">
                                         <h6>Central de Atendimento à Mulher</h6>
                                         <p class="mb-2"><strong>Telefone:</strong> 180</p>
-                                        <p class="mb-0">Atendimento gratuito 24 horas para denúncias e orientações.</p>
                                     </div>
                                     
                                     <div class="resource-card">
                                         <h6>Disque Direitos Humanos</h6>
                                         <p class="mb-2"><strong>Telefone:</strong> 100</p>
-                                        <p class="mb-0">Denúncias de violações de direitos humanos.</p>
-                                    </div>
-                                    
-                                    <div class="resource-card">
-                                        <h6>Ouvidoria da Mulher</h6>
-                                        <p class="mb-2"><strong>Email:</strong> ouvidoria.mulher@parauapebas.pa.gov.br</p>
-                                        <p class="mb-0">Sugestões, reclamações e elogios sobre os serviços municipais.</p>
                                     </div>
                                 </div>
                             </div>
@@ -955,43 +765,29 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="mb-4">O que é o Observatório de Gênero?</h4>
-                            <p>O Observatório de Gênero do Município de Parauapebas é uma plataforma de monitoramento e análise de dados sobre a situação das mulheres no município. Criado em 2022, o Observatório tem como objetivo:</p>
-                            
-                            <ul class="list-unstyled">
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Coletar, organizar e divulgar dados sobre igualdade de gênero</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Monitorar indicadores sociais, econômicos e políticos relacionados às mulheres</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Subsidiar a formulação de políticas públicas com dados e evidências</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Acompanhar a implementação de programas e ações voltados para as mulheres</li>
-                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Promover a transparência e o controle social das políticas de gênero</li>
-                            </ul>
+                            <p>O Observatório de Gênero do Município de Parauapebas é uma plataforma de monitoramento e análise de dados sobre a situação das mulheres no município.</p>
                             
                             <h5 class="mt-4 mb-3">Fontes de Dados</h5>
-                            <p>Os dados apresentados neste Observatório são coletados de diversas fontes oficiais:</p>
+                            <p>Os dados apresentados neste Observatório foram coletados das seguintes fontes principais:</p>
                             <ul>
-                                <li>Instituto Brasileiro de Geografia e Estatística (IBGE)</li>
-                                <li>Secretaria Municipal de Saúde</li>
-                                <li>Secretaria Municipal de Educação</li>
-                                <li>Secretaria de Segurança Pública do Estado do Pará</li>
-                                <li>Tribunal Regional Eleitoral do Pará (TRE-PA)</li>
-                                <li>Coordenadoria de Políticas para as Mulheres</li>
-                            </ul>
-                            
-                            <h5 class="mt-4 mb-3">Equipe Técnica</h5>
-                            <p>O Observatório é coordenado pela Coordenadoria de Políticas para as Mulheres, com apoio técnico de:</p>
-                            <ul>
-                                <li>Secretaria Municipal de Planejamento</li>
-                                <li>Departamento de Estatística e Indicadores</li>
-                                <li>Conselho Municipal dos Direitos da Mulher</li>
+                                <li><strong>Fundação Amazônia de Amparo a Estudos e Pesquisas (FAPESPA)</strong>: "Estatística Municipal - Parauapebas" (2024).</li>
+                                <li><strong>Ministério da Saúde (SINAN)</strong>: Notificações de violência interpessoal (2010-2024).</li>
+                                <li>Dados secundários citados nos documentos: IBGE, DATASUS/MS, TRE, etc.</li>
                             </ul>
                             
                             <div class="alert alert-info mt-4">
                                 <h6><i class="fas fa-envelope me-2"></i>Entre em Contato</h6>
                                 <p class="mb-1"><strong>Email:</strong> observatorio.genero@parauapebas.pa.gov.br</p>
                                 <p class="mb-1"><strong>Telefone:</strong> (94) 3346-2000</p>
-                                <p class="mb-0"><strong>Endereço:</strong> Praça da Prefeitura, s/n - Centro, Parauapebas - PA</p>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Footer/Copyright -->
+                <div class="footer-copyright">
+                    <p class="mb-0">&copy; 2024 Observatório de Gênero Parauapebas.</p>
+                    <p class="mb-0">Direitos reservados Frank Sinatra da Silva Muniz</p>
                 </div>
             </div>
         </div>
@@ -1000,20 +796,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
     <script>
-        // Navigation
-        document.querySelectorAll('[data-tab]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                document.querySelectorAll('[data-tab]').forEach(l => l.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                this.classList.add('active');
-                document.getElementById(this.dataset.tab).classList.add('active');
-            });
-        });
+        // --- CHART.JS FUNCTIONS ---
+        // Armazena instâncias de gráficos para evitar re-renderização
+        let charts = {};
 
-        // Chart configurations
+        // Configurações de cores dos gráficos
         const chartColors = {
             primary: '#8B3A8E',
             secondary: '#6A1B6B',
@@ -1024,261 +811,134 @@
             danger: '#E91E63'
         };
 
-        // Sector Chart
-        const sectorCtx = document.getElementById('sectorChart');
-        if (sectorCtx) {
-            new Chart(sectorCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Administração Pública', 'Educação', 'Saúde', 'Comércio', 'Indústria'],
-                    datasets: [{
-                        label: 'Mulheres',
-                        data: [48.2, 72.5, 65.8, 54.3, 18.3],
-                        backgroundColor: chartColors.primary
-                    }, {
-                        label: 'Homens',
-                        data: [51.8, 27.5, 34.2, 45.7, 81.7],
-                        backgroundColor: chartColors.info
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    }
-                }
-            });
-        }
-
-        // Employment Chart
-        const employmentCtx = document.getElementById('employmentChart');
-        if (employmentCtx) {
-            new Chart(employmentCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Mulheres Empregadas', 'Homens Empregados', 'Mulheres Desempregadas', 'Homens Desempregados'],
-                    datasets: [{
-                        data: [42.3, 57.7, 12.5, 9.8],
-                        backgroundColor: [chartColors.primary, chartColors.info, chartColors.accent, chartColors.secondary]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-        }
-
-        // Education Chart
-        const educationCtx = document.getElementById('educationChart');
-        if (educationCtx) {
-            new Chart(educationCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Fundamental', 'Médio', 'Superior', 'Pós-graduação'],
-                    datasets: [{
-                        label: 'Mulheres',
-                        data: [45.2, 52.7, 58.1, 61.4],
-                        backgroundColor: chartColors.primary
-                    }, {
-                        label: 'Homens',
-                        data: [54.8, 47.3, 41.9, 38.6],
-                        backgroundColor: chartColors.info
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    }
-                }
-            });
-        }
-
-        // Income Chart
-        const incomeCtx = document.getElementById('incomeChart');
-        if (incomeCtx) {
-            new Chart(incomeCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Salário Médio'],
-                    datasets: [{
-                        label: 'Mulheres',
-                        data: [2847],
-                        backgroundColor: chartColors.primary
-                    }, {
-                        label: 'Homens',
-                        data: [3721],
-                        backgroundColor: chartColors.info
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return 'R$ ' + value;
-                                }
+        // Renderiza o Gráfico de Violência
+        function renderViolenceChart() {
+            if (charts.violence) return; // Já renderizado
+            const violenceEvolutionCtx = document.getElementById('violenceEvolutionChart');
+            if (violenceEvolutionCtx) {
+                charts.violence = new Chart(violenceEvolutionCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                        datasets: [{
+                            label: 'Total de Notificações',
+                            data: [4, 13, 44, 182, 62, 150, 240, 128, 140, 406, 491, 814, 827, 611, 403],
+                            borderColor: chartColors.danger,
+                            backgroundColor: 'rgba(233, 30, 99, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            borderWidth: 3
+                        }, {
+                            label: 'Violência Física',
+                            data: [4, 7, 24, 173, 43, 119, 192, 106, 101, 291, 335, 374, 361, 237, 146],
+                            borderColor: chartColors.warning,
+                            backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                            tension: 0.4,
+                            borderWidth: 2
+                        }, {
+                            label: 'Violência Sexual',
+                            data: [0, 7, 23, 17, 22, 53, 56, 29, 36, 115, 95, 169, 174, 123, 56],
+                            borderColor: chartColors.primary,
+                            backgroundColor: 'rgba(139, 58, 142, 0.1)',
+                            tension: 0.4,
+                            borderWidth: 2
+                        }, {
+                            label: 'Estupro (subtipo de Sexual)',
+                            data: [0, 4, 14, 13, 21, 30, 30, 15, 29, 73, 73, 121, 120, 103, 48],
+                            borderColor: chartColors.info,
+                            backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                            tension: 0.4,
+                            borderWidth: 2,
+                            hidden: true,
+                            borderDash: [5, 5]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         scales: {
+                            y: {
+                                beginAtZero: true
                             }
                         }
                     }
-                }
-            });
+                });
+            }
         }
 
-        // Violence Types Chart
-        const violenceTypesCtx = document.getElementById('violenceTypesChart');
-        if (violenceTypesCtx) {
-            new Chart(violenceTypesCtx, {
-                type: 'pie',
-                data: {
-                    labels: ['Violência Física', 'Violência Psicológica', 'Violência Sexual', 'Violência Patrimonial', 'Feminicídio'],
-                    datasets: [{
-                        data: [352, 298, 87, 65, 45],
-                        backgroundColor: [chartColors.danger, chartColors.warning, chartColors.primary, chartColors.info, chartColors.secondary]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-        }
-
-        // Violence Evolution Chart
-        const violenceEvolutionCtx = document.getElementById('violenceEvolutionChart');
-        if (violenceEvolutionCtx) {
-            new Chart(violenceEvolutionCtx, {
-                type: 'line',
-                data: {
-                    labels: ['2020', '2021', '2022', '2023', '2024'],
-                    datasets: [{
-                        label: 'Casos Registrados',
-                        data: [612, 698, 743, 789, 847],
-                        borderColor: chartColors.danger,
-                        backgroundColor: 'rgba(233, 30, 99, 0.1)',
-                        tension: 0.4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-        }
-
-        // Politics Chart
-        const politicsCtx = document.getElementById('politicsChart');
-        if (politicsCtx) {
-            new Chart(politicsCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Mulheres', 'Homens'],
-                    datasets: [{
-                        data: [23.5, 76.5],
-                        backgroundColor: [chartColors.primary, chartColors.info]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-        }
-
-        // Councils Chart
-        const councilsCtx = document.getElementById('councilsChart');
-        if (councilsCtx) {
-            new Chart(councilsCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Saúde', 'Educação', 'Assistência Social', 'Meio Ambiente', 'Cultura'],
-                    datasets: [{
-                        label: 'Mulheres',
-                        data: [45, 62, 58, 38, 51],
-                        backgroundColor: chartColors.primary
-                    }, {
-                        label: 'Homens',
-                        data: [55, 38, 42, 62, 49],
-                        backgroundColor: chartColors.info
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100
-                        }
+        // Renderiza o Gráfico de Política (Eleitorado)
+        function renderPoliticsChart() {
+            if (charts.politics) return; // Já renderizado
+            const politicsCtx = document.getElementById('politicsChart');
+            if (politicsCtx) {
+                charts.politics = new Chart(politicsCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Eleitoras (49,6%)', 'Eleitores (50,4%)'],
+                        datasets: [{
+                            label: 'Eleitorado 2024',
+                            data: [99410, 101166],
+                            backgroundColor: [chartColors.primary, chartColors.info]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
                     }
-                }
-            });
+                });
+            }
         }
 
-        // Population Chart
-        const populationCtx = document.getElementById('populationChart');
-        if (populationCtx) {
-            new Chart(populationCtx, {
-                type: 'pie',
-                data: {
-                    labels: ['Mulheres (51,2%)', 'Homens (48,8%)'],
-                    datasets: [{
-                        data: [106636, 101637],
-                        backgroundColor: [chartColors.primary, chartColors.info]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
-        }
-
-        // Age Pyramid Chart
-        const agePyramidCtx = document.getElementById('agePyramidChart');
-        if (agePyramidCtx) {
-            new Chart(agePyramidCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['0-14', '15-29', '30-44', '45-59', '60+'],
-                    datasets: [{
-                        label: 'Mulheres',
-                        data: [-28.5, -24.3, -22.1, -15.8, -9.3],
-                        backgroundColor: chartColors.primary
-                    }, {
-                        label: 'Homens',
-                        data: [29.2, 25.1, 21.8, 14.9, 8.9],
-                        backgroundColor: chartColors.info
-                    }]
-                },
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: {
-                            ticks: {
-                                callback: function(value) {
-                                    return Math.abs(value) + '%';
-                                }
-                            }
-                        }
+        // Renderiza o Gráfico de População
+        function renderPopulationChart() {
+            if (charts.population) return; // Já renderizado
+            const populationCtx = document.getElementById('populationChart');
+            if (populationCtx) {
+                charts.population = new Chart(populationCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Mulheres (50,0%)', 'Homens (50,0%)'],
+                        datasets: [{
+                            label: 'População (Censo 2022)',
+                            data: [133914, 133922],
+                            backgroundColor: [chartColors.primary, chartColors.info]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
                     }
+                });
+            }
+        }
+
+        // --- NAVEGAÇÃO ---
+        document.querySelectorAll('[data-tab]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Limpa todas as abas ativas
+                document.querySelectorAll('[data-tab]').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Ativa a aba clicada
+                this.classList.add('active');
+                const tabId = this.dataset.tab;
+                document.getElementById(tabId).classList.add('active');
+
+                // Verifica qual aba está ativa e renderiza seu gráfico (apenas na primeira vez)
+                if (tabId === 'violence') {
+                    renderViolenceChart();
+                } else if (tabId === 'politics') {
+                    renderPoliticsChart();
+                } else if (tabId === 'demographics') {
+                    renderPopulationChart();
                 }
             });
-        }
+        });
+
+        // Nenhum gráfico na aba 'dashboard' (padrão), então não é necessária renderização inicial.
+        // Os gráficos serão renderizados no primeiro clique em suas respectivas abas.
     </script>
 </body>
 </html>
