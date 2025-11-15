@@ -3,7 +3,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "vercel-build": "vite build",
     "preview": "vite preview",
+    "start": "vite preview --port 3000",
     "deploy": "gh-pages -d dist"
   },
   // ...demais campos
